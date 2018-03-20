@@ -114,6 +114,23 @@ StringFromXMLString(const unsigned char *bytes, unsigned length)
   return AUTORELEASE(str);
 }
 
+#if defined(HAVE_LIBXML)
+
+#define	GS_XMLNODETYPE \
+union\
+{\
+	xmlDoc *doc;\
+	xmlDtd *dtd;\
+	xmlEntity *entity;\
+	xmlNode *node;\
+}
+
+#else
+#define GS_XMLNODETYPE void*
+
+#endif
+
+
 /* Instance variables for NSXMLNode.  This macro needs to be defined before
  * the NSXMLNode.h header is imported and before GSInternal.h is imported.
  *
@@ -144,7 +161,7 @@ StringFromXMLString(const unsigned char *bytes, unsigned length)
  */
 #define GS_NSXMLNode_IVARS \
   NSUInteger	  kind; \
-  GS_XMLNODETYPE *node;  \
+  GS_XMLNODETYPE node;  \
   NSUInteger      options; \
   id              objectValue; \
   NSMutableArray *subNodes;
