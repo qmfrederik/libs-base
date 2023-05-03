@@ -2656,10 +2656,12 @@ getEntityDefault(void *ctx, const xmlChar *name, BOOL resolve)
                   return NULL;
                 }
               ret->owner = 1;
+#if LIBXML_VERSION < 21100
               if (ret->checked == 0)
                 {
                   ret->checked = 1;
                 }
+#endif
             }
         }
     }
