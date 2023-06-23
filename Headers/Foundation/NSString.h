@@ -794,6 +794,7 @@ typedef NSUInteger NSStringEncodingConversionOptions;
 - (NSRange) lineRangeForRange: (NSRange)aRange;
 - (const char*) lossyCString;
 - (NSString*) stringByAddingPercentEscapesUsingEncoding: (NSStringEncoding)e;
+- (NSString *) stringByAddingPercentEncodingWithAllowedCharacters: (NSCharacterSet *)aSet;
 - (NSString*) stringByPaddingToLength: (NSUInteger)newLength
 			   withString: (NSString*)padString
 		      startingAtIndex: (NSUInteger)padIndex;

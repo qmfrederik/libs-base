@@ -2008,6 +2008,7 @@ GSICUCollatorOpen(NSStringCompareOptions mask, NSLocale *locale)
 }
 
 /**
+ * THIS METHOD HAS BEEN DEPRECATED
  * Constructs a new ASCII string which is a representation of the receiver
  * in which characters are escaped where necessary in order to produce a
  * version of the string legal for inclusion within a URL.<br />
@@ -2066,6 +2067,55 @@ GSICUCollatorOpen(NSStringCompareOptions mask, NSLocale *locale)
 				 encoding: NSASCIIStringEncoding];
       NSZoneFree(NSDefaultMallocZone(), dst);
       IF_NO_GC([s autorelease];)
+    }
+  return s;
+}
+
+/**
+ * This method replaces stringByAddingPercentEscapesUsingEncoding
+ */
+- (NSString *) stringByAddingPercentEncodingWithAllowedCharacters:
+  (NSCharacterSet *)aSet
+{
+  NSData	*data = [self dataUsingEncoding: NSUTF8StringEncoding];
+  NSString	*s = nil;
+
+  if (data != nil)
+    {
+      unsigned char	*src = (unsigned char*)[data bytes];
+      unsigned int	slen = [data length];
+      unsigned char	*dst;
+      unsigned int	spos = 0;
+      unsigned int	dpos = 0;
+
+      dst = (unsigned char*)NSZoneMalloc(NSDefaultMallocZone(), slen * 3);
+      while (spos < slen)
+	{
+	  unichar	c = src[spos++];
+	  unsigned int	hi;
+	  unsigned int	lo;
+
+	  /* If the character is in the allowed set *and* is in the
+	   * 7-bit ASCII range, it can be added unchanged.
+	   */
+	  if (c < 128 && [aSet characterIsMember: c])
+	    {
+	      dst[dpos++] = c;
+	    }
+	  else // if not, then encode it...
+	    {
+	      dst[dpos++] = '%';
+	      hi = (c & 0xf0) >> 4;
+	      dst[dpos++] = (hi > 9) ? 'A' + hi - 10 : '0' + hi;
+	      lo = (c & 0x0f);
+	      dst[dpos++] = (lo > 9) ? 'A' + lo - 10 : '0' + lo;
+	    }
+	}
+      s = [[NSString alloc] initWithBytes: dst
+				   length: dpos
+				 encoding: NSASCIIStringEncoding];
+      NSZoneFree(NSDefaultMallocZone(), dst);
+      IF_NO_ARC([s autorelease];)
     }
   return s;
 }
