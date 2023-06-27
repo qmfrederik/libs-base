@@ -39,19 +39,10 @@
 #import "Foundation/NSCoder.h"
 
 #if defined(_WIN32)
-#ifdef HAVE_WS2TCPIP_H
+#include <winsock2.h>
 #include <ws2tcpip.h>
-#endif // HAVE_WS2TCPIP_H
-#if !defined(HAVE_INET_NTOP)
-extern const char* WSAAPI inet_ntop(int, const void *, char *, size_t);
-#endif
-#if !defined(HAVE_INET_NTOP)
-extern int WSAAPI inet_pton(int , const char *, void *);
-// #if defined(_WIN32)
-// #include <winsock2.h>
-// #include <ws2tcpip.h>
-//// extern const char *inet_ntop(int, const void *, char *, size_t);
-//// extern int inet_pton(int , const char *, void *);
+// extern const char *inet_ntop(int, const void *, char *, size_t);
+// extern int inet_pton(int , const char *, void *);
 #else
 #include <netdb.h>
 #include <sys/param.h>
