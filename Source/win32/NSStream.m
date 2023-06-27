@@ -1379,8 +1379,20 @@ CFDictionaryRef SCDynamicStoreCopyProxies(SCDynamicStoreRef store, NSString * fo
   GSSocketStream *outs = nil;
   int sock;
 
-  ins = (GSSocketStream*)AUTORELEASE([[GSInetInputStream alloc] initToAddr: address port: port]);
-  outs = (GSSocketStream*)AUTORELEASE([[GSInetOutputStream alloc] initToAddr: address port: port]);
+  NSMutableString *addressStr  = [NSMutableString stringWithString:address];
+  NSUInteger *colonCount = [addressStr replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [addressStr length])];
+
+  //IPv6
+  if(colonCount == 7)
+  {
+    ins = (GSSocketStream*)AUTORELEASE([[GSInet6InputStream alloc] initToAddr: address port: port]);
+    outs = (GSSocketStream*)AUTORELEASE([[GSInet6OutputStream alloc] initToAddr: address port: port]);
+  }
+  else
+  {
+    ins = (GSSocketStream*)AUTORELEASE([[GSInetInputStream alloc] initToAddr: address port: port]);
+    outs = (GSSocketStream*)AUTORELEASE([[GSInetOutputStream alloc] initToAddr: address port: port]);
+  }
   
 #if 0 // TESTPLANT-MAL-03132018: This bypasses the GSSOCKS processing...
   sock = socket(PF_INET, SOCK_STREAM, 0);
