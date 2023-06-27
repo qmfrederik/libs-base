@@ -530,6 +530,19 @@ myHostName()
 #if     defined(AF_INET6)
     {
       struct in6_addr	hostaddr6;
+      
+      //Remove brackets if exists
+      const char *formattedAddress;
+      NSUInteger addressLength = [address length] - 1; //Don't fall off the array
+      char firstChar = [address characterAtIndex:0];
+      char lastChar = [address characterAtIndex:addressLength];
+
+      if(firstChar == '[' && lastChar == ']')
+      {
+          NSString *lastBracketRemoved = [address substringToIndex:addressLength];
+          NSString *cleanedAddress = [lastBracketRemoved substringFromIndex:1];
+          a = [cleanedAddress UTF8String];
+      }
 
       if (inet_pton(AF_INET6, a, (void*)&hostaddr6) <= 0)
 	{
