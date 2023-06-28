@@ -2033,7 +2033,7 @@ setNonBlocking(SOCKET fd)
             }
           else
             {
-              [self _setAddress: (struct sockaddr*)&peer];
+              [self _setAddress: (struct sockaddr_storage*)&peer];
               return YES;
             }
         }
@@ -2055,7 +2055,7 @@ setNonBlocking(SOCKET fd)
 	  else
 	    {
 	      strncpy(peer.sun_path, c_addr, sizeof(peer.sun_path)-1);
-	      [self _setAddress: (struct sockaddr*)&peer];
+	      [self _setAddress: (struct sockaddr_storage*)&peer];
 	      return YES;
 	    }
 	}
@@ -2066,7 +2066,7 @@ setNonBlocking(SOCKET fd)
     }
 }
 
-- (void) _setAddress: (struct sockaddr*)address
+- (void) _setAddress: (struct sockaddr_storage*)address
 {
   memcpy(&_address.s, address, GSPrivateSockaddrLength(address));
 }
