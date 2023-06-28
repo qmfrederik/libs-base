@@ -2010,7 +2010,7 @@ setNonBlocking(SOCKET fd)
             }
           else
             {
-              [self _setAddress: (struct sockaddr*)&peer];
+              [self _setAddress: (struct sockaddr_storage*)&peer];
               return YES;
             }
         }
