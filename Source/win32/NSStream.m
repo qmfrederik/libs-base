@@ -1379,9 +1379,6 @@ CFDictionaryRef SCDynamicStoreCopyProxies(SCDynamicStoreRef store, NSString * fo
   GSSocketStream *outs = nil;
   int sock;
 
-  NSMutableString *addressStr  = [NSMutableString stringWithString:address];
-  NSUInteger *colonCount = [addressStr replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [addressStr length])];
-
   ins = (GSSocketStream*)AUTORELEASE([[GSInetInputStream alloc] initToAddr: address port: port]);
   outs = (GSSocketStream*)AUTORELEASE([[GSInetOutputStream alloc] initToAddr: address port: port]);
 
