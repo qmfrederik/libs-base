@@ -214,8 +214,8 @@ SOCKIVARS
 
 @end
 @interface GSSocketServerStream (AddedBehaviors)
-- (struct sockaddr_storage*) _address;
-- (void) _setAddress: (struct sockaddr_storage*)address;
+- (struct sockaddr*) _address;
+- (void) _setAddress: (struct sockaddr*)address;
 - (void) _setClosing: (BOOL)passive;
 - (void) _setHandler: (id)h;
 - (void) _setPassive: (BOOL)passive;
