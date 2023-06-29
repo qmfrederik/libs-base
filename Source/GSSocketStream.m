@@ -88,7 +88,7 @@ GSPrivateSockaddrHost(struct sockaddr *addr)
     {
       struct sockaddr_in6	*addr6 = (struct sockaddr_in6*)(void*)addr;
 
-      inet_ntop(AF_INET6, &addr6->sin6_addr, buf, sizeof(buf));
+      inet_ntop(AF_INET, &addr6->sin6_addr, buf, sizeof(buf));
       return [NSString stringWithUTF8String: buf];
     }
 #endif
