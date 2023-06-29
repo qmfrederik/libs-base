@@ -1895,9 +1895,15 @@ setNonBlocking(SOCKET fd)
 
   if (result == nil && _address.s.ss_family != AF_UNSPEC)
     {
+      #ifdef(AF_INET)
+        struct sockaddr	sin;
+      #endif
+      #ifdef(AF_INET6)
+        struct sockaddr_storage	sin;
+      #endif
+
       SOCKET    	s = [self _sock];
-      struct sockaddr	sin;
-      socklen_t	        size = sizeof(sin);
+      socklen_t	  size = sizeof(sin);
 
       memset(&sin, '\0', size);
       if ([key isEqualToString: GSStreamLocalAddressKey])
