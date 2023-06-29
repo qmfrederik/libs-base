@@ -64,9 +64,9 @@
 #endif
 
 unsigned
-GSPrivateSockaddrLength(struct sockaddr_storage *addr)
+GSPrivateSockaddrLength(struct sockaddr *addr)
 {
-  switch (addr->ss_family) {
+  switch (addr->sa_family) {
     case AF_INET:       return sizeof(struct sockaddr_in);
 #ifdef	AF_INET6
     case AF_INET6:      return sizeof(struct sockaddr_in6);
@@ -79,12 +79,12 @@ GSPrivateSockaddrLength(struct sockaddr_storage *addr)
 }
 
 NSString *
-GSPrivateSockaddrHost(struct sockaddr_storage *addr)
+GSPrivateSockaddrHost(struct sockaddr *addr)
 {
   char		buf[40];
 
 #if     defined(AF_INET6)
-  if (AF_INET6 == addr->ss_family)
+  if (AF_INET6 == addr->sa_family)
     {
       struct sockaddr_in6	*addr6 = (struct sockaddr_in6*)(void*)addr;
 
@@ -106,12 +106,12 @@ GSPrivateSockaddrName(struct sockaddr_storage *addr)
 }
 
 uint16_t
-GSPrivateSockaddrPort(struct sockaddr_storage *addr)
+GSPrivateSockaddrPort(struct sockaddr *addr)
 {
   uint16_t	port;
 
 #if     defined(AF_INET6)
-  if (AF_INET6 == addr->ss_family)
+  if (AF_INET6 == addr->sa_family)
     {
       struct sockaddr_in6	*addr6 = (struct sockaddr_in6*)(void*)addr;
 
@@ -127,10 +127,10 @@ GSPrivateSockaddrPort(struct sockaddr_storage *addr)
 
 BOOL
 GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
-  NSString *service, NSString *protocol, struct sockaddr_storage *sin)
+  NSString *service, NSString *protocol, struct sockaddr *sin)
 {
   memset(sin, '\0', sizeof(*sin));
-  sin->ss_family = AF_INET;
+  sin->sa_family = AF_INET;
 
   /* If we were given a hostname, we use any address for that host.
    * Otherwise we expect the given name to be an address unless it is
@@ -166,7 +166,7 @@ GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
 #if     defined(AF_INET6)
 	  struct sockaddr_in6	*addr6 = (struct sockaddr_in6*)(void*)sin;
 
-	  sin->ss_family = AF_INET6;
+	  sin->sa_family = AF_INET6;
 	  if (inet_pton(AF_INET6, n, &addr6->sin6_addr) <= 0)
 	    {
 	      return NO;
@@ -234,7 +234,7 @@ GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
     }
 
 #if     defined(AF_INET6)
-  if (AF_INET6 == sin->ss_family)
+  if (AF_INET6 == sin->sa_family)
     {
       ((struct sockaddr_in6*)(void*)sin)->sin6_port = GSSwapHostI16ToBig(port);
     }
@@ -1895,12 +1895,7 @@ setNonBlocking(SOCKET fd)
 
   if (result == nil && _address.s.ss_family != AF_UNSPEC)
     {
-        struct sockaddr	sin;
-      
-      #if defined(AF_INET6)
-        struct sockaddr_storage	sin;
-      #endif
-
+      struct sockaddr	sin;
       SOCKET    	s = [self _sock];
       socklen_t	  size = sizeof(sin);
 
