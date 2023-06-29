@@ -98,7 +98,7 @@ GSPrivateSockaddrHost(struct sockaddr *addr)
 }
 
 NSString *
-GSPrivateSockaddrName(struct sockaddr_storage *addr)
+GSPrivateSockaddrName(struct sockaddr *addr)
 {
   return [NSString stringWithFormat: @"%@:%d",
     GSPrivateSockaddrHost(addr),
