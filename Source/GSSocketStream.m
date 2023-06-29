@@ -1523,7 +1523,7 @@ static NSString * const GSSOCKSAckConn = @"GSSOCKSAckConn";
   if (conf != nil)
     {
       GSHTTP      *h;
-      struct sockaddr   *sa = [i _address];
+      struct sockaddr_storage   *sa = [i _address];
       BOOL              i6 = NO;
 
 #if defined(AF_INET6)
@@ -1884,7 +1884,7 @@ setNonBlocking(SOCKET fd)
   return self;
 }
 
-- (struct sockaddr*) _address
+- (struct sockaddr_storage*) _address
 {
   return &_address.s;
 }
@@ -2010,7 +2010,7 @@ setNonBlocking(SOCKET fd)
             }
           else
             {
-              [self _setAddress: (struct sockaddr*)&peer];
+              [self _setAddress: (struct sockaddr_storage*)&peer];
               return YES;
             }
         }
@@ -2033,7 +2033,7 @@ setNonBlocking(SOCKET fd)
             }
           else
             {
-              [self _setAddress: (struct sockaddr*)&peer];
+              [self _setAddress: (struct sockaddr_storage*)&peer];
               return YES;
             }
         }
@@ -2055,7 +2055,7 @@ setNonBlocking(SOCKET fd)
 	  else
 	    {
 	      strncpy(peer.sun_path, c_addr, sizeof(peer.sun_path)-1);
-	      [self _setAddress: (struct sockaddr*)&peer];
+	      [self _setAddress: (struct sockaddr_storage*)&peer];
 	      return YES;
 	    }
 	}
@@ -2066,7 +2066,7 @@ setNonBlocking(SOCKET fd)
     }
 }
 
-- (void) _setAddress: (struct sockaddr*)address
+- (void) _setAddress: (struct sockaddr_storage*)address
 {
   memcpy(&_address.s, address, GSPrivateSockaddrLength(address));
 }

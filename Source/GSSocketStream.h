@@ -30,7 +30,7 @@
 #import "GSNetwork.h"
 
 typedef	union {
-  struct sockaddr	s;
+  struct sockaddr_storage	s;
   struct sockaddr_in	i4;
 #ifdef	AF_INET6
   struct sockaddr_in	i6;
@@ -59,12 +59,12 @@ SOCKIVARS
 /**
  * get the sockaddr
  */
-- (struct sockaddr*) _address;
+- (struct sockaddr_storage*) _address;
 
 /**
  * set the sockaddr
  */
-- (void) _setAddress: (struct sockaddr*)address;
+- (void) _setAddress: (struct sockaddr_storage*)address;
 
 /**
  * setter for closing flag ... the remote end has stopped either sending
