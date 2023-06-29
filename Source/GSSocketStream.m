@@ -64,7 +64,7 @@
 #endif
 
 unsigned
-GSPrivateSockaddrLength(struct sockaddr_storage *addr)
+GSPrivateSockaddrLength(struct sockaddr *addr)
 {
   switch (addr->sa_family) {
     case AF_INET:       return sizeof(struct sockaddr_in);
@@ -79,7 +79,7 @@ GSPrivateSockaddrLength(struct sockaddr_storage *addr)
 }
 
 NSString *
-GSPrivateSockaddrHost(struct sockaddr_storage *addr)
+GSPrivateSockaddrHost(struct sockaddr *addr)
 {
   char		buf[40];
 
@@ -106,7 +106,7 @@ GSPrivateSockaddrName(struct sockaddr *addr)
 }
 
 uint16_t
-GSPrivateSockaddrPort(struct sockaddr_storage *addr)
+GSPrivateSockaddrPort(struct sockaddr *addr)
 {
   uint16_t	port;
 
@@ -127,7 +127,7 @@ GSPrivateSockaddrPort(struct sockaddr_storage *addr)
 
 BOOL
 GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
-  NSString *service, NSString *protocol, struct sockaddr_storage *sin)
+  NSString *service, NSString *protocol, struct sockaddr *sin)
 {
   memset(sin, '\0', sizeof(*sin));
   sin->sa_family = AF_INET;
