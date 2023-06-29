@@ -64,9 +64,9 @@
 #endif
 
 unsigned
-GSPrivateSockaddrLength(struct sockaddr *addr)
+GSPrivateSockaddrLength(struct sockaddr_storage *addr)
 {
-  switch (addr->sa_family) {
+  switch (addr->ss_family) {
     case AF_INET:       return sizeof(struct sockaddr_in);
 #ifdef	AF_INET6
     case AF_INET6:      return sizeof(struct sockaddr_in6);
@@ -79,12 +79,12 @@ GSPrivateSockaddrLength(struct sockaddr *addr)
 }
 
 NSString *
-GSPrivateSockaddrHost(struct sockaddr *addr)
+GSPrivateSockaddrHost(struct sockaddr_storage *addr)
 {
   char		buf[40];
 
 #if     defined(AF_INET6)
-  if (AF_INET6 == addr->sa_family)
+  if (AF_INET6 == addr->ss_family)
     {
       struct sockaddr_in6	*addr6 = (struct sockaddr_in6*)(void*)addr;
 
@@ -98,7 +98,7 @@ GSPrivateSockaddrHost(struct sockaddr *addr)
 }
 
 NSString *
-GSPrivateSockaddrName(struct sockaddr *addr)
+GSPrivateSockaddrName(struct sockaddr_storage *addr)
 {
   return [NSString stringWithFormat: @"%@:%d",
     GSPrivateSockaddrHost(addr),
@@ -106,12 +106,12 @@ GSPrivateSockaddrName(struct sockaddr *addr)
 }
 
 uint16_t
-GSPrivateSockaddrPort(struct sockaddr *addr)
+GSPrivateSockaddrPort(struct sockaddr_storage *addr)
 {
   uint16_t	port;
 
 #if     defined(AF_INET6)
-  if (AF_INET6 == addr->sa_family)
+  if (AF_INET6 == addr->ss_family)
     {
       struct sockaddr_in6	*addr6 = (struct sockaddr_in6*)(void*)addr;
 
@@ -127,10 +127,10 @@ GSPrivateSockaddrPort(struct sockaddr *addr)
 
 BOOL
 GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
-  NSString *service, NSString *protocol, struct sockaddr *sin)
+  NSString *service, NSString *protocol, struct sockaddr_storage *sin)
 {
   memset(sin, '\0', sizeof(*sin));
-  sin->sa_family = AF_INET;
+  sin->ss_family = AF_INET;
 
   /* If we were given a hostname, we use any address for that host.
    * Otherwise we expect the given name to be an address unless it is
@@ -166,7 +166,7 @@ GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
 #if     defined(AF_INET6)
 	  struct sockaddr_in6	*addr6 = (struct sockaddr_in6*)(void*)sin;
 
-	  sin->sa_family = AF_INET6;
+	  sin->ss_family = AF_INET6;
 	  if (inet_pton(AF_INET6, n, &addr6->sin6_addr) <= 0)
 	    {
 	      return NO;
@@ -234,7 +234,7 @@ GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
     }
 
 #if     defined(AF_INET6)
-  if (AF_INET6 == sin->sa_family)
+  if (AF_INET6 == sin->ss_family)
     {
       ((struct sockaddr_in6*)(void*)sin)->sin6_port = GSSwapHostI16ToBig(port);
     }
@@ -922,15 +922,15 @@ static NSString * const GSSOCKSAckConn = @"GSSOCKSAckConn";
         }
 
 #if     defined(AF_INET6)
-      if (sa->sa_family == AF_INET6)
+      if (sa->ss_family == AF_INET6)
         {
           i6 = YES;
         }
       else
 #endif
-      if (sa->sa_family != AF_INET)
+      if (sa->ss_family != AF_INET)
         {
-          GSOnceMLog(@"SOCKS not supported for socket type %d", sa->sa_family);
+          GSOnceMLog(@"SOCKS not supported for socket type %d", sa->ss_family);
           return;
         }
 
@@ -1527,15 +1527,15 @@ static NSString * const GSSOCKSAckConn = @"GSSOCKSAckConn";
       BOOL              i6 = NO;
 
 #if defined(AF_INET6)
-      if (sa->sa_family == AF_INET6)
+      if (sa->ss_family == AF_INET6)
         {
           i6 = YES;
         }
       else
 #endif
-        if (sa->sa_family != AF_INET)
+        if (sa->ss_family != AF_INET)
           {
-            GSOnceMLog(@"GSHTTP not supported for socket type %d", sa->sa_family);
+            GSOnceMLog(@"GSHTTP not supported for socket type %d", sa->ss_family);
             return;
           }
 
@@ -1879,7 +1879,7 @@ setNonBlocking(SOCKET fd)
 #endif
       _sock = INVALID_SOCKET;
       _handler = nil;
-      _address.s.sa_family = AF_UNSPEC;
+      _address.s.ss_family = AF_UNSPEC;
     }
   return self;
 }
@@ -1893,7 +1893,7 @@ setNonBlocking(SOCKET fd)
 {
   id	result = [super propertyForKey: key];
 
-  if (result == nil && _address.s.sa_family != AF_UNSPEC)
+  if (result == nil && _address.s.ss_family != AF_UNSPEC)
     {
       SOCKET    	s = [self _sock];
       struct sockaddr	sin;
@@ -2175,7 +2175,7 @@ setNonBlocking(SOCKET fd)
             {
               [GSSOCKS tryInput: self output: _sibling];
             }
-          s = socket(_address.s.sa_family, SOCK_STREAM, 0);
+          s = socket(_address.s.ss_family, SOCK_STREAM, 0);
           if (BADSOCKET(s))
             {
               [self _recordError];
@@ -2674,7 +2674,7 @@ setNonBlocking(SOCKET fd)
             {
               [GSSOCKS tryInput: _sibling output: self];
             }
-          s = socket(_address.s.sa_family, SOCK_STREAM, 0);
+          s = socket(_address.s.ss_family, SOCK_STREAM, 0);
           if (BADSOCKET(s))
             {
               [self _recordError];
@@ -3061,7 +3061,7 @@ setNonBlocking(SOCKET fd)
       return;
     }
 
-  s = socket(_address.s.sa_family, SOCK_STREAM, 0);
+  s = socket(_address.s.ss_family, SOCK_STREAM, 0);
   if (BADSOCKET(s))
     {
       [self _recordError];
@@ -3074,9 +3074,9 @@ setNonBlocking(SOCKET fd)
     }
 
 #ifndef	BROKEN_SO_REUSEADDR
-  if (_address.s.sa_family == AF_INET
+  if (_address.s.ss_family == AF_INET
 #ifdef  AF_INET6
-    || _address.s.sa_family == AF_INET6
+    || _address.s.ss_family == AF_INET6
 #endif
   )
     {

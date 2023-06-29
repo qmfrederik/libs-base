@@ -116,8 +116,8 @@ SOCKIVARS
 SOCKIVARS
 @end
 @interface GSSocketInputStream (AddedBehaviors)
-- (struct sockaddr*) _address;
-- (void) _setAddress: (struct sockaddr*)address;
+- (struct sockaddr_storage*) _address;
+- (void) _setAddress: (struct sockaddr_storage*)address;
 - (NSInteger) _read: (uint8_t *)buffer maxLength: (NSUInteger)len;
 - (void) _setClosing: (BOOL)passive;
 - (void) _setHandler: (id)h;
@@ -158,8 +158,8 @@ SOCKIVARS
 SOCKIVARS
 @end
 @interface GSSocketOutputStream (AddedBehaviors)
-- (struct sockaddr*) _address;
-- (void) _setAddress: (struct sockaddr*)address;
+- (struct sockaddr_storage*) _address;
+- (void) _setAddress: (struct sockaddr_storage*)address;
 - (void) _setClosing: (BOOL)passive;
 - (void) _setHandler: (id)h;
 - (void) _setPassive: (BOOL)passive;
@@ -214,8 +214,8 @@ SOCKIVARS
 
 @end
 @interface GSSocketServerStream (AddedBehaviors)
-- (struct sockaddr*) _address;
-- (void) _setAddress: (struct sockaddr*)address;
+- (struct sockaddr_storage*) _address;
+- (void) _setAddress: (struct sockaddr_storage*)address;
 - (void) _setClosing: (BOOL)passive;
 - (void) _setHandler: (id)h;
 - (void) _setPassive: (BOOL)passive;
