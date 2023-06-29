@@ -1895,10 +1895,10 @@ setNonBlocking(SOCKET fd)
 
   if (result == nil && _address.s.ss_family != AF_UNSPEC)
     {
-      #ifdef(AF_INET)
+      #if defined(AF_INET)
         struct sockaddr	sin;
       #endif
-      #ifdef(AF_INET6)
+      #if defined(AF_INET6)
         struct sockaddr_storage	sin;
       #endif
 
