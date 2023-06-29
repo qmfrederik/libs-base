@@ -907,7 +907,7 @@ static NSString * const GSSOCKSAckConn = @"GSSOCKSAckConn";
   if (conf != nil)
     {
       GSSOCKS           *h;
-      struct sockaddr   *sa = [i _address];
+      struct sockaddr_storage   *sa = [i _address];
       NSString          *v;
       BOOL              i6 = NO;
 
@@ -3156,7 +3156,7 @@ setNonBlocking(SOCKET fd)
   struct {
     uint8_t bytes[BUFSIZ];
   } __attribute__((aligned(2)))buf;
-  struct sockaddr       *addr = (struct sockaddr*)&buf;
+  struct sockaddr_storage       *addr = (struct sockaddr_storage*)&buf;
   socklen_t		len = sizeof(buf);
   int			acceptReturn;
 
