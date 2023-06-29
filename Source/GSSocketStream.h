@@ -59,12 +59,12 @@ SOCKIVARS
 /**
  * get the sockaddr
  */
-- (struct sockaddr_storage*) _address;
+- (struct sockaddr*) _address;
 
 /**
  * set the sockaddr
  */
-- (void) _setAddress: (struct sockaddr_storage*)address;
+- (void) _setAddress: (struct sockaddr*)address;
 
 /**
  * setter for closing flag ... the remote end has stopped either sending
@@ -116,8 +116,8 @@ SOCKIVARS
 SOCKIVARS
 @end
 @interface GSSocketInputStream (AddedBehaviors)
-- (struct sockaddr_storage*) _address;
-- (void) _setAddress: (struct sockaddr_storage*)address;
+- (struct sockaddr*) _address;
+- (void) _setAddress: (struct sockaddr*)address;
 - (NSInteger) _read: (uint8_t *)buffer maxLength: (NSUInteger)len;
 - (void) _setClosing: (BOOL)passive;
 - (void) _setHandler: (id)h;
@@ -158,8 +158,8 @@ SOCKIVARS
 SOCKIVARS
 @end
 @interface GSSocketOutputStream (AddedBehaviors)
-- (struct sockaddr_storage*) _address;
-- (void) _setAddress: (struct sockaddr_storage*)address;
+- (struct sockaddr*) _address;
+- (void) _setAddress: (struct sockaddr*)address;
 - (void) _setClosing: (BOOL)passive;
 - (void) _setHandler: (id)h;
 - (void) _setPassive: (BOOL)passive;
