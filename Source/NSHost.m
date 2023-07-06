@@ -532,7 +532,6 @@ myHostName()
       struct in6_addr	hostaddr6;
       
       //Remove brackets if exists
-      const char *formattedAddress;
       NSUInteger addressLength = [address length] - 1; //Don't fall off the array
       char firstChar = [address characterAtIndex:0];
       char lastChar = [address characterAtIndex:addressLength];
