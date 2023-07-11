@@ -25,6 +25,7 @@
 
 #import "common.h"
 #import "Foundation/NSValue.h"
+#import "Foundation/NSCharacterSet.h"
 #import "GNUstepBase/NSURL+GNUstepBase.h"
 
 @implementation NSURL (GNUstepBaseAdditions)
