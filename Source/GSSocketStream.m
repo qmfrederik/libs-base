@@ -907,7 +907,7 @@ static NSString * const GSSOCKSAckConn = @"GSSOCKSAckConn";
   if (conf != nil)
     {
       GSSOCKS           *h;
-      struct sockaddr   *sa = [i _address];
+      struct sockaddr_storage   *sa = [i _address];
       NSString          *v;
       BOOL              i6 = NO;
 
@@ -922,15 +922,15 @@ static NSString * const GSSOCKSAckConn = @"GSSOCKSAckConn";
         }
 
 #if     defined(AF_INET6)
-      if (sa->sa_family == AF_INET6)
+      if (sa->ss_family == AF_INET6)
         {
           i6 = YES;
         }
       else
 #endif
-      if (sa->sa_family != AF_INET)
+      if (sa->ss_family != AF_INET)
         {
-          GSOnceMLog(@"SOCKS not supported for socket type %d", sa->sa_family);
+          GSOnceMLog(@"SOCKS not supported for socket type %d", sa->ss_family);
           return;
         }
 
@@ -1523,19 +1523,19 @@ static NSString * const GSSOCKSAckConn = @"GSSOCKSAckConn";
   if (conf != nil)
     {
       GSHTTP      *h;
-      struct sockaddr   *sa = [i _address];
+      struct sockaddr_storage   *sa = [i _address];
       BOOL              i6 = NO;
 
 #if defined(AF_INET6)
-      if (sa->sa_family == AF_INET6)
+      if (sa->ss_family == AF_INET6)
         {
           i6 = YES;
         }
       else
 #endif
-        if (sa->sa_family != AF_INET)
+        if (sa->ss_family != AF_INET)
           {
-            GSOnceMLog(@"GSHTTP not supported for socket type %d", sa->sa_family);
+            GSOnceMLog(@"GSHTTP not supported for socket type %d", sa->ss_family);
             return;
           }
 
@@ -1879,12 +1879,12 @@ setNonBlocking(SOCKET fd)
 #endif
       _sock = INVALID_SOCKET;
       _handler = nil;
-      _address.s.sa_family = AF_UNSPEC;
+      _address.s.ss_family = AF_UNSPEC;
     }
   return self;
 }
 
-- (struct sockaddr*) _address
+- (struct sockaddr_storage*) _address
 {
   return &_address.s;
 }
@@ -1893,11 +1893,11 @@ setNonBlocking(SOCKET fd)
 {
   id	result = [super propertyForKey: key];
 
-  if (result == nil && _address.s.sa_family != AF_UNSPEC)
+  if (result == nil && _address.s.ss_family != AF_UNSPEC)
     {
-      SOCKET    	s = [self _sock];
       struct sockaddr	sin;
-      socklen_t	        size = sizeof(sin);
+      SOCKET    	s = [self _sock];
+      socklen_t	  size = sizeof(sin);
 
       memset(&sin, '\0', size);
       if ([key isEqualToString: GSStreamLocalAddressKey])
@@ -2010,7 +2010,7 @@ setNonBlocking(SOCKET fd)
             }
           else
             {
-              [self _setAddress: (struct sockaddr*)&peer];
+              [self _setAddress: (struct sockaddr_storage*)&peer];
               return YES;
             }
         }
@@ -2033,7 +2033,7 @@ setNonBlocking(SOCKET fd)
             }
           else
             {
-              [self _setAddress: (struct sockaddr*)&peer];
+              [self _setAddress: (struct sockaddr_storage*)&peer];
               return YES;
             }
         }
@@ -2055,7 +2055,7 @@ setNonBlocking(SOCKET fd)
 	  else
 	    {
 	      strncpy(peer.sun_path, c_addr, sizeof(peer.sun_path)-1);
-	      [self _setAddress: (struct sockaddr*)&peer];
+	      [self _setAddress: (struct sockaddr_storage*)&peer];
 	      return YES;
 	    }
 	}
@@ -2066,7 +2066,7 @@ setNonBlocking(SOCKET fd)
     }
 }
 
-- (void) _setAddress: (struct sockaddr*)address
+- (void) _setAddress: (struct sockaddr_storage*)address
 {
   memcpy(&_address.s, address, GSPrivateSockaddrLength(address));
 }
@@ -2175,7 +2175,7 @@ setNonBlocking(SOCKET fd)
             {
               [GSSOCKS tryInput: self output: _sibling];
             }
-          s = socket(_address.s.sa_family, SOCK_STREAM, 0);
+          s = socket(_address.s.ss_family, SOCK_STREAM, 0);
           if (BADSOCKET(s))
             {
               [self _recordError];
@@ -2193,7 +2193,7 @@ setNonBlocking(SOCKET fd)
           [GSTLSHandler tryInput: self output: _sibling];
         }
 
-      result = connect([self _sock], &_address.s,
+      result = connect([self _sock], (struct sockaddr*)&_address.s,
         GSPrivateSockaddrLength(&_address.s));
       if (socketError(result))
         {
@@ -2674,7 +2674,7 @@ setNonBlocking(SOCKET fd)
             {
               [GSSOCKS tryInput: _sibling output: self];
             }
-          s = socket(_address.s.sa_family, SOCK_STREAM, 0);
+          s = socket(_address.s.ss_family, SOCK_STREAM, 0);
           if (BADSOCKET(s))
             {
               [self _recordError];
@@ -2692,7 +2692,7 @@ setNonBlocking(SOCKET fd)
           [GSTLSHandler tryInput: _sibling output: self];
         }
 
-      result = connect([self _sock], &_address.s,
+      result = connect([self _sock], (struct sockaddr*) &_address.s,
         GSPrivateSockaddrLength(&_address.s));
       if (socketError(result))
         {
@@ -3061,7 +3061,7 @@ setNonBlocking(SOCKET fd)
       return;
     }
 
-  s = socket(_address.s.sa_family, SOCK_STREAM, 0);
+  s = socket(_address.s.ss_family, SOCK_STREAM, 0);
   if (BADSOCKET(s))
     {
       [self _recordError];
@@ -3074,9 +3074,9 @@ setNonBlocking(SOCKET fd)
     }
 
 #ifndef	BROKEN_SO_REUSEADDR
-  if (_address.s.sa_family == AF_INET
+  if (_address.s.ss_family == AF_INET
 #ifdef  AF_INET6
-    || _address.s.sa_family == AF_INET6
+    || _address.s.ss_family == AF_INET6
 #endif
   )
     {
@@ -3097,7 +3097,7 @@ setNonBlocking(SOCKET fd)
 #endif
 
   bindReturn = bind([self _sock],
-    &_address.s, GSPrivateSockaddrLength(&_address.s));
+    (struct sockaddr*)&_address.s, GSPrivateSockaddrLength(&_address.s));
   if (socketError(bindReturn))
     {
       [self _recordError];
@@ -3156,11 +3156,11 @@ setNonBlocking(SOCKET fd)
   struct {
     uint8_t bytes[BUFSIZ];
   } __attribute__((aligned(2)))buf;
-  struct sockaddr       *addr = (struct sockaddr*)&buf;
+  struct sockaddr_storage       *addr = (struct sockaddr_storage*)&buf;
   socklen_t		len = sizeof(buf);
   int			acceptReturn;
 
-  acceptReturn = accept([self _sock], addr, (OPTLEN*)&len);
+  acceptReturn = accept([self _sock], (struct sockaddr*)addr, (OPTLEN*)&len);
   _events &= ~NSStreamEventHasBytesAvailable;
   if (socketError(acceptReturn))
     { // test for real error

@@ -2008,6 +2008,7 @@ GSICUCollatorOpen(NSStringCompareOptions mask, NSLocale *locale)
 }
 
 /**
+ * THIS METHOD HAS BEEN DEPRECATED
  * Constructs a new ASCII string which is a representation of the receiver
  * in which characters are escaped where necessary in order to produce a
  * version of the string legal for inclusion within a URL.<br />

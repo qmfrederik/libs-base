@@ -142,6 +142,26 @@ extern "C" {
  * Returns the character set for characters allowed in a query URL component.
  */
 + (NSCharacterSet*)URLQueryAllowedCharacterSet;
+
+/**
+ * Returns the character set for characters allowed in a host URL component.
+ */
++ (NSCharacterSet*)URLHostAllowedCharacterSet;
+
+/**
+ * Returns the character set for characters allowed in a password URL component.
+ */
++ (NSCharacterSet*)URLPasswordAllowedCharacterSet;
+
+/**
+ * Returns the character set for characters allowed in a path URL component.
+ */
++ (NSCharacterSet*)URLPathAllowedCharacterSet;
+
+/**
+ * Returns the character set for characters allowed in a user URL component.
+ */
++ (NSCharacterSet*)URLUserAllowedCharacterSet;
 #endif
 
 /**

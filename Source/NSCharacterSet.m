@@ -802,6 +802,34 @@ static Class concreteMutableClass = nil;
   return AUTORELEASE([set copy]); // return immutable
 }
 
++ (NSCharacterSet*)URLHostAllowedCharacterSet
+{
+  NSMutableCharacterSet *set = [NSMutableCharacterSet alphanumericCharacterSet];
+  [set addCharactersInString: @"!$&'()*+,-.:;=[]~_"];
+  return AUTORELEASE([set copy]); // return immutable
+}
+
++ (NSCharacterSet*)URLPasswordAllowedCharacterSet
+{
+  NSMutableCharacterSet *set = [NSMutableCharacterSet alphanumericCharacterSet];
+  [set addCharactersInString: @"!$&'()*+,-.;=@~_"];
+  return AUTORELEASE([set copy]); // return immutable
+}
+
++ (NSCharacterSet*)URLPathAllowedCharacterSet
+{
+  NSMutableCharacterSet *set = [NSMutableCharacterSet alphanumericCharacterSet];
+  [set addCharactersInString: @"!$&'()*+,-./=@~_"];
+  return AUTORELEASE([set copy]); // return immutable
+}
+
++ (NSCharacterSet*)URLUserAllowedCharacterSet
+{
+  NSMutableCharacterSet *set = [NSMutableCharacterSet alphanumericCharacterSet];
+  [set addCharactersInString: @"!$&'()*+,-.;=~_"];
+  return AUTORELEASE([set copy]); // return immutable
+}
+
 + (id) characterSetWithBitmapRepresentation: (NSData*)data
 {
   return AUTORELEASE([[concreteClass alloc] initWithBitmap: data]);

@@ -1574,20 +1574,7 @@ static NSUInteger	urlAlign;
   if (myData->host != 0)
     {
       char	buf[strlen(myData->host)+1];
-
-      if (*myData->host == '[')
-	{
-	  char	*end = unescape(myData->host + 1, buf);
-
-	  if (end[-1] == ']')
-	    {
-	      end[-1] = '\0';
-	    }
-	}
-      else
-	{
-          unescape(myData->host, buf);
-	}
+      unescape(myData->host, buf);
       host = [NSString stringWithUTF8String: buf];
     }
   return host;
