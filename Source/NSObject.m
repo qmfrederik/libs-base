@@ -40,6 +40,7 @@
 
 #import "common.h"
 #include <objc/Protocol.h>
+#include <objc/message.h>
 #import "Foundation/NSMethodSignature.h"
 #import "Foundation/NSInvocation.h"
 #import "Foundation/NSLock.h"
