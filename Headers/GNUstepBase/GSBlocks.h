@@ -114,6 +114,8 @@ typedef retTy(^name)()
 
 #if __has_include(<objc/blocks_runtime.h>)
 #  include <objc/blocks_runtime.h>
+#elif __has_include(<Block.h>)
+#  include <Block.h>
 #else
 
 #ifdef __cplusplus

@@ -43,11 +43,7 @@
 #import "Foundation/NSOperation.h"
 #import "Foundation/NSThread.h"
 #import "GNUstepBase/GSLock.h"
-
-
-#if defined(_WIN32)
-#include <objc/blocks_runtime.h>
-#endif
+#import "GNUstepBase/GSBlocks.h"
 
 
 static NSZone	*_zone = 0;
