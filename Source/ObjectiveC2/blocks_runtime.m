@@ -241,7 +241,11 @@ _Block_copy(const void *src)
 
 // Release a block and frees the memory when the retain count hits zero.
 void
+#ifndef __MINGW32__
 _Block_release(void *src)
+#else
+_Block_release(const void *src)
+#endif
 {
   struct StackBlockClass *self = src;
   extern void _NSConcreteStackBlock;
@@ -264,7 +268,11 @@ _Block_release(void *src)
 }
 
 const char *
+#ifndef __MINGW32__
 _Block_get_types(void *blk)
+#else
+_Block_get_types(const void *blk)
+#endif
 {
   struct psy_block_literal *block = blk;
   return block->types;
