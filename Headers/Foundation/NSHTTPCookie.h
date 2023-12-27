@@ -68,7 +68,7 @@ extern NSString * const NSHTTPCookieVersion; /** Obtain cookie version */
  *  as originally produced by netscape, as well as more recent standardised
  *  and versioned cookies.
  */
-@interface NSHTTPCookie :  NSObject
+GS_EXPORT_CLASS @interface NSHTTPCookie :  NSObject
 {
 #if	GS_EXPOSE(NSHTTPCookie)
 @private

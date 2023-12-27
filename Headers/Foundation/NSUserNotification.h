@@ -122,7 +122,7 @@ typedef NSInteger NSUserNotificationActivationType;
 
 GS_EXPORT NSString * const NSUserNotificationDefaultSoundName;
 
-@interface NSUserNotificationCenter : NSObject
+GS_EXPORT_CLASS @interface NSUserNotificationCenter : NSObject
 {
 #if	GS_EXPOSE(NSUserNotificationCenter)
   NSMutableArray *_scheduledNotifications;

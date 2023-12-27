@@ -52,7 +52,7 @@ extern "C" {
  *  preferred for new implementations, since they provide greater
  *  forward/backward compatibility in the face of class changes.</p>
  */
-@interface NSCoder : NSObject
+GS_EXPORT_CLASS @interface NSCoder : NSObject
 
 + (NSInteger) coderVersion;
 

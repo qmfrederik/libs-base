@@ -41,7 +41,7 @@
 extern "C" {
 #endif
 
-@interface NSDistributedLock : NSObject
+GS_EXPORT_CLASS @interface NSDistributedLock : NSObject
 {
 #if	GS_EXPOSE(NSDistributedLock)
   NSString	*_lockPath;

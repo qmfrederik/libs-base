@@ -217,7 +217,7 @@ GS_EXPORT NSString* const GSLocale;
 	- write docs : -(
 	*/
 
-@interface NSUserDefaults : NSObject
+GS_EXPORT_CLASS @interface NSUserDefaults : NSObject
 {
 #if	GS_EXPOSE(NSUserDefaults)
 @private

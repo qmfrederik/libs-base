@@ -216,7 +216,7 @@ typedef NSUInteger NSURLRequestNetworkServiceType;
 
 /**
  */
-@interface NSMutableURLRequest : NSURLRequest
+GS_EXPORT_CLASS @interface NSMutableURLRequest : NSURLRequest
 
 /**
  * Sets the receiver's cache policy.

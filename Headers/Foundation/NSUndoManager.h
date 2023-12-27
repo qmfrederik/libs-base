@@ -87,7 +87,7 @@ GS_EXPORT NSString* const NSUndoManagerWillRedoChangeNotification;
  */
 GS_EXPORT NSString* const NSUndoManagerWillUndoChangeNotification;
 
-@interface NSUndoManager : NSObject
+GS_EXPORT_CLASS @interface NSUndoManager : NSObject
 {
 #if	GS_EXPOSE(NSUndoManager)
 @private
@@ -151,7 +151,7 @@ GS_EXPORT NSString* const NSUndoManagerWillUndoChangeNotification;
 @end
 
 // Testplant-MAL-09142016: This is added code for additional support
-@interface NSCellUndoManager : NSUndoManager
+GS_EXPORT_CLASS @interface NSCellUndoManager : NSUndoManager
 // Special undo manager for the field editor so that it doesn't interfere with the window's undo manager.
 {
   NSUndoManager * _nextUndoManager;

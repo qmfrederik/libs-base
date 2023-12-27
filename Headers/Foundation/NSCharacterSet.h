@@ -240,7 +240,7 @@ extern "C" {
 /**
  *  An [NSCharacterSet] that can be modified.
  */
-@interface NSMutableCharacterSet : NSCharacterSet
+GS_EXPORT_CLASS @interface NSMutableCharacterSet : NSCharacterSet
 
 /**
  *  Adds characters specified by unicode indices in aRange to set.

@@ -70,7 +70,7 @@ extern "C" {
  *  representation of a property list (NSArray or NSDictionary plus limited
  *  contents).</p>
  */
-@interface NSSerializer: NSObject
+GS_EXPORT_CLASS @interface NSSerializer: NSObject
 
 /**
  *  <p>Serialize given property list (NSArray or NSDictionary plus limited
@@ -129,7 +129,7 @@ extern "C" {
  *  property list (NSArray or NSDictionary plus limited contents) from a
  *  byte-array (actually string) representation.
  */
-@interface NSDeserializer: NSObject
+GS_EXPORT_CLASS @interface NSDeserializer: NSObject
 
 /**
  *  Recover a property list (NSArray or NSDictionary plus limited

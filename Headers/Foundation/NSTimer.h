@@ -44,7 +44,7 @@ extern "C" {
  *	Other classes must not attempt to use instance variables as
  *	they are subject to change.
  */
-@interface NSTimer : NSObject
+GS_EXPORT_CLASS @interface NSTimer : NSObject
 {
 #if	GS_EXPOSE(NSTimer)
 @public

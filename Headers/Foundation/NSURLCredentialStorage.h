@@ -52,7 +52,7 @@ extern NSString *const NSURLCredentialStorageChangedNotification;
 /**
  * Provides shared storage of credentials.
  */
-@interface NSURLCredentialStorage : NSObject
+GS_EXPORT_CLASS @interface NSURLCredentialStorage : NSObject
 {
 #if	GS_EXPOSE(NSURLCredentialStorage)
   void *_NSURLCredentialStorageInternal;

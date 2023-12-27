@@ -73,7 +73,7 @@ extern "C" {
  * Currently NOT implemented when using the Apple Foundation!<br />
  * Please contribute an Apple implementation.
  */
-@interface GSServerStream : NSStream
+GS_EXPORT_CLASS @interface GSServerStream : NSStream
 
 /**
  * Create an IP (ipv4 or ipv6) server stream.<br />

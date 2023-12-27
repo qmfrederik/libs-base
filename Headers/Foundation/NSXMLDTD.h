@@ -44,7 +44,7 @@ extern "C" {
 /**
  * Encapsulates document type definition data.
  */
-@interface NSXMLDTD : NSXMLNode
+GS_EXPORT_CLASS @interface NSXMLDTD : NSXMLNode
 {
 #if     GS_NONFRAGILE
 #  if	defined(GS_NSXMLDTD_IVARS)

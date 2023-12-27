@@ -899,28 +899,28 @@ static HANDLE	hProcess = 0;
 @end
 
 
-NSString* const NSCharacterConversionException
+GS_DECLARE NSString* const NSCharacterConversionException
   = @"NSCharacterConversionException";
 
-NSString* const NSGenericException
+GS_DECLARE NSString* const NSGenericException
   = @"NSGenericException";
 
-NSString* const NSInternalInconsistencyException
+GS_DECLARE NSString* const NSInternalInconsistencyException
   = @"NSInternalInconsistencyException";
 
-NSString* const NSInvalidArgumentException
+GS_DECLARE NSString* const NSInvalidArgumentException
   = @"NSInvalidArgumentException";
 
-NSString* const NSMallocException
+GS_DECLARE NSString* const NSMallocException
   = @"NSMallocException";
 
-NSString* const NSOldStyleException
+GS_DECLARE NSString* const NSOldStyleException
   = @"NSOldStyleException";
 
-NSString* const NSParseErrorException
+GS_DECLARE NSString* const NSParseErrorException
   = @"NSParseErrorException";
 
-NSString* const NSRangeException
+GS_DECLARE NSString* const NSRangeException
  = @"NSRangeException";
 
 static void _terminate()

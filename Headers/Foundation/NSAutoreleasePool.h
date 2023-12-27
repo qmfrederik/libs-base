@@ -184,7 +184,7 @@ typedef struct autorelease_array_list
  * </deflist>
  */
 NS_AUTOMATED_REFCOUNT_UNAVAILABLE
-@interface NSAutoreleasePool : NSObject 
+GS_EXPORT_CLASS @interface NSAutoreleasePool : NSObject 
 {
 #if	GS_EXPOSE(NSAutoreleasePool) && !__has_feature(objc_arc)
   /* For re-setting the current pool when we are dealloc'ed. */

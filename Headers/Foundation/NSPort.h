@@ -197,7 +197,7 @@ typedef SOCKET NSSocketNativeHandle;
  *
  *  <p>Note that this class is incompatible with the latest OS X version.</p>
  */
-@interface NSSocketPort : NSPort
+GS_EXPORT_CLASS @interface NSSocketPort : NSPort
 {
 #if	GS_EXPOSE(NSSocketPort)
   NSRecursiveLock	*myLock;
@@ -279,7 +279,7 @@ typedef SOCKET NSSocketNativeHandle;
  *  which can be used for interthread/interprocess communications
  *  on the same host, but not between different hosts.
  */
-@interface NSMessagePort : NSPort
+GS_EXPORT_CLASS @interface NSMessagePort : NSPort
 {
 #if	GS_EXPOSE(NSMessagePort)
   void	*_internal;

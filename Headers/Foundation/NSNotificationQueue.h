@@ -112,7 +112,7 @@ typedef NSUInteger NSNotificationCoalescing;
  */
 struct _NSNotificationQueueList;
 
-@interface NSNotificationQueue : NSObject
+GS_EXPORT_CLASS @interface NSNotificationQueue : NSObject
 {
 #if	GS_EXPOSE(NSNotificationQueue)
 @public

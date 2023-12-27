@@ -211,7 +211,7 @@ enum _NSDirectoryEnumerationOptions
   };
 typedef NSUInteger NSDirectoryEnumerationOptions; 
   
-@interface NSFileManager : NSObject
+GS_EXPORT_CLASS @interface NSFileManager : NSObject
 {
 #if	GS_EXPOSE(NSFileManager)
 @private
@@ -515,7 +515,7 @@ typedef NSUInteger NSDirectoryEnumerationOptions;
  *  and in the current implementation the natural order of the underlying
  *  filesystem is used.</p>
  */
-@interface NSDirectoryEnumerator : NSEnumerator
+GS_EXPORT_CLASS @interface NSDirectoryEnumerator : NSEnumerator
 {
 #if	GS_EXPOSE(NSDirectoryEnumerator)
 @private

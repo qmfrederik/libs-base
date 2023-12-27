@@ -37,7 +37,7 @@ static const NSTextCheckingType NSTextCheckingTypeRegularExpression  = 1ULL<<10;
  * NSTextCheckingResult is an abstract class encapsulating the result of some
  * operation that checks 
  */
-@interface NSTextCheckingResult : NSObject
+GS_EXPORT_CLASS @interface NSTextCheckingResult : NSObject
 #if GS_HAS_DECLARED_PROPERTIES
 @property(readonly) NSDictionary *addressComponents;
 @property(readonly) NSDictionary *components;

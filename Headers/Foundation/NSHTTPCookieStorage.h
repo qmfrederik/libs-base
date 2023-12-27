@@ -73,7 +73,7 @@ extern NSString * const NSHTTPCookieManagerCookiesChangedNotification;
  * the shared cookie store.<br />
  */
 
-@interface NSHTTPCookieStorage :  NSObject
+GS_EXPORT_CLASS @interface NSHTTPCookieStorage :  NSObject
 {
 #if	GS_EXPOSE(NSHTTPCookieStorage)
 @private

@@ -119,7 +119,7 @@ extern "C" {
 /**
  * HTTP specific additions to an NSURLResponse
  */
-@interface NSHTTPURLResponse :  NSURLResponse
+GS_EXPORT_CLASS @interface NSHTTPURLResponse :  NSURLResponse
 
 /**
  * Returns a string representation of a status code.

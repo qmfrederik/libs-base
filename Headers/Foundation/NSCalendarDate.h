@@ -32,7 +32,7 @@ extern "C" {
 @class	NSTimeZone;
 @class	NSTimeZoneDetail;
 
-@interface NSCalendarDate : NSDate
+GS_EXPORT_CLASS @interface NSCalendarDate : NSDate
 {
 #if	GS_EXPOSE(NSCalendarDate)
   NSTimeInterval	_seconds_since_ref;

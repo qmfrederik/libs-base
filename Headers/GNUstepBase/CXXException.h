@@ -12,7 +12,7 @@ struct _Unwind_Exception;
  * The caught instance will be autoreleased and does not need to be manually
  * freed.  
  */
-@interface CXXException : NSObject
+GS_EXPORT_CLASS @interface CXXException : NSObject
 {
   /** Exception object, as defined by the CodeSourcery exception ABI. */
   struct _Unwind_Exception *ex;

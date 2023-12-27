@@ -38,7 +38,7 @@ extern "C" {
 #endif
 
 
-@interface NSGarbageCollector : NSObject 
+GS_EXPORT_CLASS @interface NSGarbageCollector : NSObject 
 
 /** Returns the garbage collector instance ... there is only one.<br />
  * Returns nil if the process is not using garbage collection.

@@ -105,7 +105,7 @@ typedef enum
 @end
 
 
-@interface NSURLCache : NSObject
+GS_EXPORT_CLASS @interface NSURLCache : NSObject
 {
 #if	GS_EXPOSE(NSURLCache)
   void *_NSURLCacheInternal;

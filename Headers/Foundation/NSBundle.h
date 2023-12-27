@@ -110,7 +110,7 @@ GS_EXPORT NSString* const NSLoadedClasses;
    bundle.
    </p>
 */
-@interface NSBundle : NSObject
+GS_EXPORT_CLASS @interface NSBundle : NSObject
 {
 #if	GS_EXPOSE(NSBundle)
 @public

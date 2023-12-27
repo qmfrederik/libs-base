@@ -100,7 +100,7 @@ extern "C" {
 @end //NSAttributedString
 
 
-@interface NSMutableAttributedString : NSAttributedString
+GS_EXPORT_CLASS @interface NSMutableAttributedString : NSAttributedString
 {
 }
 

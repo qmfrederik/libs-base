@@ -54,7 +54,7 @@ extern "C" {
 - (BOOL) removePortForName: (NSString*)name;
 @end
 
-@interface NSSocketPortNameServer : NSPortNameServer
+GS_EXPORT_CLASS @interface NSSocketPortNameServer : NSPortNameServer
 {
 #if	GS_EXPOSE(NSSocketPortNameServer)
   NSMapTable	*_portMap;	/* Registered ports information.	*/
@@ -79,7 +79,7 @@ extern "C" {
 @end
 
 
-@interface NSMessagePortNameServer : NSPortNameServer
+GS_EXPORT_CLASS @interface NSMessagePortNameServer : NSPortNameServer
 + (id) sharedInstance;
 
 /** Returns the [NSMessagePort] instance registered for the specified name

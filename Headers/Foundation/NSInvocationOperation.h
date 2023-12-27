@@ -41,7 +41,7 @@ extern "C" {
 @class NSInvocation;
 @class NSException;
 
-@interface NSInvocationOperation : NSOperation
+GS_EXPORT_CLASS @interface NSInvocationOperation : NSOperation
 {
   @private
     NSInvocation *_invocation;

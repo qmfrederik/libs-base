@@ -71,7 +71,7 @@ extern "C" {
 DEFINE_BLOCK_TYPE(GSNotificationBlock, void, NSNotification *);
 #endif
 
-@interface NSNotificationCenter : NSObject
+GS_EXPORT_CLASS @interface NSNotificationCenter : NSObject
 {
 #if	GS_EXPOSE(NSNotificationCenter)
 @private

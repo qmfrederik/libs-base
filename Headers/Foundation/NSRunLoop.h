@@ -46,7 +46,7 @@ extern "C" {
  */
 GS_EXPORT NSString * const NSDefaultRunLoopMode;
 
-@interface NSRunLoop : NSObject
+GS_EXPORT_CLASS @interface NSRunLoop : NSObject
 {
 #if	GS_EXPOSE(NSRunLoop)
   @private

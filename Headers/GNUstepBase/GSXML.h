@@ -189,11 +189,11 @@ extern "C" {
 
 @end
 
-@interface GSXMLAttribute : GSXMLNode
+GS_EXPORT_CLASS @interface GSXMLAttribute : GSXMLNode
 - (NSString*) value;
 @end
 
-@interface GSXMLParser : NSObject
+GS_EXPORT_CLASS @interface GSXMLParser : NSObject
 {
    id			src;		/* source for parsing	*/
    void			*lib;		/* parser context	*/
@@ -244,12 +244,12 @@ extern "C" {
 
 @end
 
-@interface GSHTMLParser : GSXMLParser
+GS_EXPORT_CLASS @interface GSHTMLParser : GSXMLParser
 {
 }
 @end
 
-@interface GSSAXHandler : NSObject
+GS_EXPORT_CLASS @interface GSSAXHandler : NSObject
 {
   void		*lib;	// xmlSAXHandlerPtr
   GSXMLParser	*parser;
@@ -355,10 +355,10 @@ extern "C" {
 
 @end
 
-@interface GSTreeSAXHandler : GSSAXHandler
+GS_EXPORT_CLASS @interface GSTreeSAXHandler : GSSAXHandler
 @end
 
-@interface GSHTMLSAXHandler : GSSAXHandler
+GS_EXPORT_CLASS @interface GSHTMLSAXHandler : GSSAXHandler
 @end
 
 @class GSXPathObject;
@@ -389,7 +389,7 @@ extern "C" {
  * NSLog (@"Got %@", [result stringValue]);
  *
  */
-@interface GSXPathContext : NSObject
+GS_EXPORT_CLASS @interface GSXPathContext : NSObject
 {
   void		*_lib;		// xmlXPathContext
   GSXMLDocument *_document;
@@ -410,7 +410,7 @@ extern "C" {
  * the returned type of each GSXPath query to make sure it's what you
  * meant it to be.
  */
-@interface GSXPathObject : NSObject
+GS_EXPORT_CLASS @interface GSXPathObject : NSObject
 {
   void		*_lib;		// xmlXPathObject
   GSXPathContext *_context;
@@ -420,28 +420,28 @@ extern "C" {
 /**
  * For XPath queries returning true/false.
  */
-@interface GSXPathBoolean : GSXPathObject
+GS_EXPORT_CLASS @interface GSXPathBoolean : GSXPathObject
 - (BOOL) booleanValue;
 @end
 
 /**
  * For XPath queries returning a number.
  */
-@interface GSXPathNumber : GSXPathObject
+GS_EXPORT_CLASS @interface GSXPathNumber : GSXPathObject
 - (double) doubleValue;
 @end
 
 /**
  * For XPath queries returning a string.
  */
-@interface GSXPathString : GSXPathObject
+GS_EXPORT_CLASS @interface GSXPathString : GSXPathObject
 - (NSString *) stringValue;
 @end
 
 /**
  * For XPath queries returning a node set.
  */
-@interface GSXPathNodeSet : GSXPathObject
+GS_EXPORT_CLASS @interface GSXPathNodeSet : GSXPathObject
 - (NSUInteger) count;
 - (NSUInteger) length;
 

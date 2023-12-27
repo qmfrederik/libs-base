@@ -81,7 +81,7 @@ enum {
 #endif	/* OS_API_VERSION(GS_API_MACOSX,GS_API_LATEST) */
 
 
-@interface NSProcessInfo: NSObject
+GS_EXPORT_CLASS @interface NSProcessInfo: NSObject
 
 /**
  * Returns the shared NSProcessInfo object for the current process.

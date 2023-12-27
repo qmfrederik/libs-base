@@ -856,7 +856,7 @@ typedef NSUInteger NSStringEncodingConversionOptions;
 
 @end
 
-@interface NSMutableString : NSString
+GS_EXPORT_CLASS @interface NSMutableString : NSString
 
 // Creating Temporary Strings
 + (id) string;
@@ -911,7 +911,7 @@ typedef NSUInteger NSStringEncodingConversionOptions;
  * What follows is a dummy declaration of the class to keep the compiler
  * happy.
  */
-@interface NXConstantString : NSString
+GS_EXPORT_CLASS @interface NXConstantString : NSString
 {
 @public
   const char * const nxcsptr;

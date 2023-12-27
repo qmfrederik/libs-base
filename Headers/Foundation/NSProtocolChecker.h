@@ -35,7 +35,7 @@ extern "C" {
 
 @class Protocol;
 
-@interface NSProtocolChecker : NSProxy
+GS_EXPORT_CLASS @interface NSProtocolChecker : NSProxy
 {
 #if	GS_EXPOSE(NSProtocolChecker)
 @private

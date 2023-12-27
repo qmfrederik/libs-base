@@ -388,7 +388,7 @@ GS_EXPORT void _NSRemoveHandler( NSHandler *handler );
 /*   Assertion Handling */
 /* ------------------------------------------------------------------------ */
 
-@interface NSAssertionHandler : NSObject
+GS_EXPORT_CLASS @interface NSAssertionHandler : NSObject
 
 + (NSAssertionHandler*) currentHandler;
 

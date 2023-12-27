@@ -78,7 +78,7 @@ typedef NSUInteger NSXMLDTDNodeKind;
  * <desc>nil</desc>
  * </deflist>
  */
-@interface NSXMLDTDNode : NSXMLNode
+GS_EXPORT_CLASS @interface NSXMLDTDNode : NSXMLNode
 {
 #if     GS_NONFRAGILE
 #  if	defined(GS_NSXMLDTDNode_IVARS)
