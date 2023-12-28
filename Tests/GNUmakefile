@@ -45,10 +45,6 @@ ifeq ($(GNUSTEP_MAKEFILES),)
   $(error You need to set GNUSTEP_MAKEFILES before running this!)
 endif
 
-ifeq ($(GNUSTEP_TESTS_TARGET),)
-  GNUSTEP_TESTS_TARGET := base
-endif
-
 include $(GNUSTEP_MAKEFILES)/common.make
 
 TOP_DIR := $(shell dirname $(CURDIR))
@@ -79,9 +75,9 @@ check::
 	export LD_LIBRARY_PATH;\
 	export PATH;\
 	if [ "$(DEBUG)" = "" ]; then \
-	  gnustep-tests $(GNUSTEP_TESTS_FLAGS) $(GNUSTEP_TESTS_TARGET);\
+	  gnustep-tests base;\
         else \
-	  gnustep-tests --debug $(GNUSTEP_TESTS_FLAGS) $(GNUSTEP_TESTS_TARGET);\
+	  gnustep-tests --debug base;\
         fi; \
 	)
 
