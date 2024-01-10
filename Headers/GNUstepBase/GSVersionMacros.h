@@ -387,7 +387,7 @@ static inline void gs_consumed(id NS_CONSUMED GS_UNUSED_ARG o) { return; }
 #if	defined(GNUSTEP_WITH_DLL)
 
 #if BUILD_libgnustep_base_DLL
-# if defined(__MINGW__)
+# if defined(__MINGW__) && !defined(__clang__)
   /* On Mingw, the compiler will export all symbols automatically, so
    * __declspec(dllexport) is not needed.
    */
@@ -396,7 +396,7 @@ static inline void gs_consumed(id NS_CONSUMED GS_UNUSED_ARG o) { return; }
 #  define GS_DECLARE
 # else
 #  define GS_EXPORT_CLASS  __declspec(dllexport)
-#  define GS_EXPORT  __declspec(dllexport)
+#  define GS_EXPORT  extern __declspec(dllexport)
 #  define GS_DECLARE __declspec(dllexport)
 # endif
 #else
