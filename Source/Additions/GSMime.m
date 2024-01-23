@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: b974613f97e03047c09bf77c69f0abad1665262d 
+// Date: 2020-05-14 13:11:00 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for GSMIME
 
    Copyright (C) 2000,2001 Free Software Foundation, Inc.

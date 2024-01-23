@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 2874b9784c4af9fb9dc92691cb80e353f8912d52 
+// Date: 2020-06-09 18:04:16 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /** NSArray - Array object to hold other objects.
    Copyright (C) 1995-2015 Free Software Foundation, Inc.
 

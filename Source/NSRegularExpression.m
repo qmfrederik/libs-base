@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Doug Simons 
+// Commit ID: 691d6ad74163295a416fb243063c62cd1fe91b9d 
+// Date: 2018-04-25 21:54:21 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation of NSRegularExpression for GNUStep
 
    Copyright (C) 2010 Free Software Foundation, Inc.

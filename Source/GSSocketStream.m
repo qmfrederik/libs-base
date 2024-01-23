@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Royal Stewart 
+// Commit ID: c990b15c91168b18a4d9a4898cc164366960fa55 
+// Date: 2023-07-13 20:48:20 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for GSSocketStream for GNUStep
    Copyright (C) 2006-2008 Free Software Foundation, Inc.
 

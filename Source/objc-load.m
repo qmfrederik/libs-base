@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Doug Simons 
+// Commit ID: 5297e7b07c5b2b32498b296056094330fa0dab63 
+// Date: 2017-01-24 16:49:44 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* objc-load - Dynamically load in Obj-C modules (Classes, Categories)
 
    Copyright (C) 1995, 1996, 1997 Free Software Foundation, Inc.

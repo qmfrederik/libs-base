@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Paul Landers 
+// Commit ID: de702928cc0568ecac45ff40dbbe264e2a3eff51 
+// Date: 2016-10-18 20:19:08 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation of network port object based on windows mailboxes
    Copyright (C) 2005 Free Software Foundation, Inc.
 

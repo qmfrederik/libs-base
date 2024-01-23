@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: bd1dce4f73c066cca760c6e2b7da4227873d6bbf 
+// Date: 2016-09-21 18:51:28 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /*
  * Parsers of SOCKS protocol messages
  * Copyright (C) 2013 Free Software Foundation, Inc.

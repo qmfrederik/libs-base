@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 0b77f46da9b33d7d450060a354fa83d507c6a54b 
+// Date: 2017-08-10 20:21:35 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** NSGeometry.m - geometry functions
  * Copyright (C) 1993, 1994, 1995 Free Software Foundation, Inc.
  *

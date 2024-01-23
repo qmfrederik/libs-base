@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Paul Landers 
+// Commit ID: 187004b787748aca5d4259c25ec4c357c209c68a 
+// Date: 2019-04-16 14:19:37 -0600 
+// ========== End of Keysight Technologies Notice ========== 
 /* Implementation for NSXMLDocument for GNUStep
    Copyright (C) 2008 Free Software Foundation, Inc.
 

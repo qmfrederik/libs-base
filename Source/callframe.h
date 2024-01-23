@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 8f41bfbd73662058764c587fc1bad329e8e3f4a7 
+// Date: 2020-06-05 13:56:15 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /* callframe - Wrapper/Objective-C interface for ffcall function interface
 
    Copyright (C) 2000, Free Software Foundation, Inc.

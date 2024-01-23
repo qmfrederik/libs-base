@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 4926c47104e8590c8c0497adae58fd49ef16b42a 
+// Date: 2017-09-14 21:28:32 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /**
  * NSJSONSerialization.m.  This file provides an implementation of the JSON
  * reading and writing APIs introduced with OS X 10.7.  

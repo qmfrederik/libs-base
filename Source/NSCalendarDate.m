@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: David Vernon 
+// Commit ID: 30e95e3e4095c8dd95958f19ccbc6b92bc7adeb1 
+// Date: 2018-01-18 22:50:12 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for NSCalendarDate for GNUstep
    Copyright (C) 1996, 1998, 1999, 2000, 2002 Free Software Foundation, Inc.
 

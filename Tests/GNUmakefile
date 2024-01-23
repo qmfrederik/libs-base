@@ -1,3 +1,8 @@
+# ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+# Committed by: Adam Fox 
+# Commit ID: 7658507407b7e1161e891fbd7e0ebefa6983706e 
+# Date: 2020-10-11 18:13:45 -0600 
+# ========== End of Keysight Technologies Notice ========== 
 #
 #  Tests Makefile for GNUstep Base Library.
 #  

@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Doug Simons 
+// Commit ID: 79efc063babe720fbd1e26dd8f456cc08b88f86e 
+// Date: 2017-03-26 22:57:22 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Interface to ObjC runtime for GNUStep
    Copyright (C) 1995, 1997, 2000 Free Software Foundation, Inc.
 

@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: cc1ee6d6fb9ced9b8f2a53cf4403a8011cbd077e 
+// Date: 2016-09-21 19:44:33 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation of NSHashTable for GNUStep
    Copyright (C) 2009 Free Software Foundation, Inc.
 

@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: f1c772c2f5e0bcc744f459b4037e8607ec4c03f1 
+// Date: 2020-06-09 17:14:59 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for GNUStep of NSString concrete subclasses
    Copyright (C) 1997,1998,2000 Free Software Foundation, Inc.
 

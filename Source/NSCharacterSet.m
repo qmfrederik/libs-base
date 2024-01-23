@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Royal Stewart 
+// Commit ID: 4d6af59811a2617e7609c1e39b0e55efc5181a26 
+// Date: 2023-06-23 17:34:46 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** NSCharacterSet - Character set holder
    Copyright (C) 1995, 1996, 1997, 1998 Free Software Foundation, Inc.
 

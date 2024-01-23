@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 72bdc5ad82209ac9be95fb31b4535c5793b4898a 
+// Date: 2017-03-10 14:56:58 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation of NSBundle class
    Copyright (C) 1993-2002 Free Software Foundation, Inc.
 

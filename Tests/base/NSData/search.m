@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Adam Fox 
+// Commit ID: 57ddd8bfec58e9ddaac9ccae6c8daa8ce1797484 
+// Date: 2020-10-11 18:12:39 -0600 
+// ========== End of Keysight Technologies Notice ========== 
 #import <Foundation/Foundation.h>
 
 #import "Testing.h"

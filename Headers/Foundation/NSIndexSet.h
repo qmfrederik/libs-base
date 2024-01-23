@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 3047907edbc861099fe405a1b33bbc190621a63f 
+// Date: 2016-09-13 22:29:24 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Interface for NSIndexSet, NSMutableIndexSet for GNUStep
    Copyright (C) 2004 Free Software Foundation, Inc.
 

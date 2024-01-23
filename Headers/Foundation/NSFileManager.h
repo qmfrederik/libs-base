@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Doug Simons 
+// Commit ID: 060e020812856acebc160316201568438bf0f61b 
+// Date: 2017-08-30 11:20:23 -0600 
+// ========== End of Keysight Technologies Notice ========== 
 /**
    NSFileManager.h
 

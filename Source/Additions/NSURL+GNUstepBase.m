@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Royal Stewart 
+// Commit ID: fafd0c6a86d1d9f0596c69394f5797baa5e29912 
+// Date: 2023-07-11 21:50:46 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* Implementation of extension methods to base additions
 
    Copyright (C) 2010 Free Software Foundation, Inc.

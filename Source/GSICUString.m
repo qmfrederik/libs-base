@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: a3b161dc84283f794c0b13149b072531acb6eaf9 
+// Date: 2016-09-14 14:40:34 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation of GSICUString for GNUStep
 
    Copyright (C) 2010 Free Software Foundation, Inc.

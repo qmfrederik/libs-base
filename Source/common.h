@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: d52d9af274eb4b80e693cd0904b737ec7b6587d1 
+// Date: 2015-07-07 22:31:41 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* Header file for all objective-c code in the base library.
  * This imports all the common headers in a consistent order such that
  * we can be sure only local headers are used rather than any which

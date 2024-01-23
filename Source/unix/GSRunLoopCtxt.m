@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 8eedc9ddaa9e420d6c9a936946712f62bfc26cc9 
+// Date: 2016-09-27 20:33:01 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /**
  * The GSRunLoopCtxt stores context information to handle polling for
  * events.  This information is associated with a particular runloop

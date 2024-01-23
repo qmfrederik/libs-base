@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Doug Simons 
+// Commit ID: ececdfa382c740e3b9475eaec4d9f922b29e1e47 
+// Date: 2020-12-23 13:46:45 -0700 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation of NSDateFormatter class
    Copyright (C) 1998 Free Software Foundation, Inc.
 

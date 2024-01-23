@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Adam Fox 
+// Commit ID: e9bf3960e55c1cf74ac67f946068236944842f5d 
+// Date: 2019-12-01 21:44:38 -0700 
+// ========== End of Keysight Technologies Notice ========== 
 /* NSCalendar.m
 
    Copyright (C) 2010 Free Software Foundation, Inc.

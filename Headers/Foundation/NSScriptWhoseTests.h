@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Frank Le Grand 
+// Commit ID: f610b134e138a6d3527261a7a7ebd0d1ed95c520 
+// Date: 2013-10-31 20:42:07 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /*
    Global include file for the GNUstep Base Library.
 

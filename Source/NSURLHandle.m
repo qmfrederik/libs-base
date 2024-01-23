@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 42ceccc1e03e7bebb86253768bebf1805b5b357b 
+// Date: 2016-09-27 20:02:16 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** NSURLHandle.m - Class NSURLHandle
    Copyright (C) 1999 Free Software Foundation, Inc.
 

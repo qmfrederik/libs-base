@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 28e3291df1d6981b07367eb896b8a2a23035a72a 
+// Date: 2016-09-23 16:59:14 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for GNU Objective-C version of NSDistantObject
    Copyright (C) 1997 Free Software Foundation, Inc.
 

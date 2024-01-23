@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: b999a753fb8870497e58a49a168455066bec51e3 
+// Date: 2016-09-23 19:17:10 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* NSLocale.m
 
    Copyright (C) 2010 Free Software Foundation, Inc.

@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: f1c772c2f5e0bcc744f459b4037e8607ec4c03f1 
+// Date: 2020-06-09 17:14:59 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /** Interface for GSTLS classes for GNUStep
    Copyright (C) 2012 Free Software Foundation, Inc.
 
