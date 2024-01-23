@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: c4ce340817b1e60e17c965942fd454825afa5457 
+// Date: 2018-04-14 19:31:34 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for GSStream for GNUStep
    Copyright (C) 2006 Free Software Foundation, Inc.
 

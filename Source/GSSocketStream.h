@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Royal Stewart 
+// Commit ID: eda52e8c89838cc3a2e7eff6e0c58386d4d5e271 
+// Date: 2023-07-07 15:18:16 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 #ifndef	INCLUDED_GSSOCKETSTREAM_H
 #define	INCLUDED_GSSOCKETSTREAM_H
 

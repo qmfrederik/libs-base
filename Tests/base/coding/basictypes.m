@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 916b60ebf4dcf52cea4b7f6c82043ec5a4d008a4 
+// Date: 2016-10-03 12:51:49 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 #include "Testing.h"
 #include <Foundation/NSArchiver.h>
 #include <Foundation/NSArray.h>

@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 03b1fb9076f0ad9133a8bfbc666461bbb7e74df8 
+// Date: 2020-05-13 15:58:04 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /* 
    NSLock.h
 

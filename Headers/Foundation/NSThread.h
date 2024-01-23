@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 5c86e52a15d39cdf9c3286b83357e8152afa0fd2 
+// Date: 2013-12-21 00:27:01 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* Control of executable units within a shared virtual memory space
    Copyright (C) 1996 Free Software Foundation, Inc.
 

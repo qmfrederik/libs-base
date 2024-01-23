@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Adam Fox 
+// Commit ID: 3726527266a790441a2101f3581110da31a488c4 
+// Date: 2020-10-09 13:55:10 -0600 
+// ========== End of Keysight Technologies Notice ========== 
 /* Interface for NSData for GNUStep
    Copyright (C) 1995 Free Software Foundation, Inc.
 

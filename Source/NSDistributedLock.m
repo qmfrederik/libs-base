@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 25db3b4ad4f206e078b1854ecf99161ec643e5ad 
+// Date: 2017-06-20 14:48:15 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for GNU Objective-C version of NSDistributedLock
    Copyright (C) 1997 Free Software Foundation, Inc.
 

@@ -1,3 +1,8 @@
+## ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+## Committed by: Marcian Lytwyn 
+## Commit ID: 01b13228d3ecfd3d555d73daf1c448ad809970a9 
+## Date: 2016-09-13 20:15:05 +0000 
+## ========== End of Keysight Technologies Notice ========== 
 AC_DEFUN(OBJC_SYS_DYNAMIC_LINKER,
 [dnl
 AC_REQUIRE([OBJC_CON_AUTOLOAD])dnl

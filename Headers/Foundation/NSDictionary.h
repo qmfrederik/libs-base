@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: a274cfdde0db6a799061ce7d71d5749e99e2121f 
+// Date: 2016-09-13 22:10:30 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* Interface for NSDictionary for GNUStep
    Copyright (C) 1995, 1996, 1999 Free Software Foundation, Inc.
 

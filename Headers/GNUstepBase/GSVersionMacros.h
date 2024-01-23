@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 13729f9977de2a49f21c9dd1a6f6086b4f746215 
+// Date: 2017-06-15 16:02:20 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* GSVersionMacros.h - macros for managing API versioning and visibility
    Copyright (C) 2006-2014 Free Software Foundation, Inc.
 

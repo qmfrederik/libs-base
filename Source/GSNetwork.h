@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: dec601d5798e1f52294b472060c21f21aad89671 
+// Date: 2018-03-13 19:14:12 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 #ifndef INCLUDED_GSNETWORK_H
 #define INCLUDED_GSNETWORK_H    1
 

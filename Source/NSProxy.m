@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 54bace98c13b2047b590ad4144532138fafb3fdd 
+// Date: 2016-09-23 19:56:29 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for GNU Objective-C version of NSProxy
    Copyright (C) 1997 Free Software Foundation, Inc.
 

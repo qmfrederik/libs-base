@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Royal Stewart 
+// Commit ID: 8641bfc43c4b391ed6fb0fda3caa1ca788eb7dea 
+// Date: 2023-06-27 01:20:12 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* $Id: inet_pton.c,v 1.1.1.1 2002/10/26 04:25:59 lukem Exp $ */
 /* from	NetBSD: inet_pton.c,v 1.16 2000/02/07 18:51:02 itojun Exp */
 

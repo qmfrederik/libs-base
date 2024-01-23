@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: d6bb85721e7e7b111ef2505fd7df37d2d1887355 
+// Date: 2016-09-13 21:55:49 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** NSEnumerator abstrace class for GNUStep
    Copyright (C) 1995, 1996 Free Software Foundation, Inc.
 

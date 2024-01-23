@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: williameveretteggplant 
+// Commit ID: 5c1f344a22af6d75f6a9704308353400ed731d84 
+// Date: 2021-12-20 16:18:41 -0700 
+// ========== End of Keysight Technologies Notice ========== 
 /** Time zone management. -*- Mode: ObjC -*-
    Copyright (C) 1997-20 11Free Software Foundation, Inc.
 

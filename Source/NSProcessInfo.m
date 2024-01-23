@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: e00a17ef0e189bad1de983f21d98c3db2eb896f7 
+// Date: 2016-10-31 22:55:14 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for NSProcessInfo for GNUStep
    Copyright (C) 1995-2014 Free Software Foundation, Inc.
 

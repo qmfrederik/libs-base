@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 9767fe51d240eac76d92d209db166b05be1c1079 
+// Date: 2017-11-16 21:58:28 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation of connection object for remote object messaging
    Copyright (C) 1994-2013 Free Software Foundation, Inc.
 

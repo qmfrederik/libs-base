@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: f0c19b9e89191fada9b2d35bf06fe21c67469c98 
+// Date: 2016-09-13 20:42:43 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation for GSLock
 
    Copyright (C) 2003 Free Software Foundation, Inc.

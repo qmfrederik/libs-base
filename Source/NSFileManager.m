@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 4b9e600d6103eadab4dd07964f1ead8f7234401a 
+// Date: 2020-06-04 15:43:55 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /**
    NSFileManager.m
 

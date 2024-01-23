@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 12c2e27932afbeeeb164640b9fd9e10949e3bbe4 
+// Date: 2017-06-21 20:44:07 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* Implementation for NSSortDescriptor for GNUStep
    Copyright (C) 2005-2011 Free Software Foundation, Inc.
 

@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: David Vernon 
+// Commit ID: 626356d309e17099f71e6e86913cbefc60c074d3 
+// Date: 2017-11-16 18:50:20 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation of object for waiting on several input sources
   NSRunLoop.m
 

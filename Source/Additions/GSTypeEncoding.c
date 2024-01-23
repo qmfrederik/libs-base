@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 7dbb2d66a834a3156567214ac8c0b02c6d26f346 
+// Date: 2020-05-15 12:59:06 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /*
  * Objective-C type encoding support
  *

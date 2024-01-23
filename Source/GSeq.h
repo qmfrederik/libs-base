@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: e2042a66f1e6d840d39fbbc5ac1e4820778314a0 
+// Date: 2020-06-09 15:50:07 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /* Implementation of composite character sequence functions for GNUSTEP
    Copyright (C) 1999 Free Software Foundation, Inc.
   

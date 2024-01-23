@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 896ebcf42836efa120a8faaaafdb791b28e1223d 
+// Date: 2016-09-23 20:37:19 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /** Implementation of NSUnarchiver for GNUstep
    Copyright (C) 1998 Free Software Foundation, Inc.
 

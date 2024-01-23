@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: b90fa7cf55e57c7c02cb1d13ddf3bfaf775cdae4 
+// Date: 2017-03-08 18:23:17 +0000 
+// ========== End of Keysight Technologies Notice ========== 
 /* Implementation of message port subclass of NSPortNameServer
 
    Copyright (C) 2005 Free Software Foundation, Inc.

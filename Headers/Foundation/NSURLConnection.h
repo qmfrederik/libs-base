@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 21ac81f26fa1ec2964cee6fceb07b05f24f2a9b1 
+// Date: 2020-09-04 16:37:50 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /* Interface for NSURLConnection for GNUstep
    Copyright (C) 2006 Software Foundation, Inc.
 

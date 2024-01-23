@@ -1,3 +1,8 @@
+// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
+// Committed by: Marcian Lytwyn 
+// Commit ID: 846b4648900c1dca90de60fc6aa8d52ec57f1a96 
+// Date: 2020-06-05 15:40:56 -0400 
+// ========== End of Keysight Technologies Notice ========== 
 /* A fast (Inline) map/hash table implementation for NSObjects
  * Copyright (C) 1998,1999  Free Software Foundation, Inc.
  * 
