@@ -128,6 +128,7 @@ int main()
     }
 
   PASS(YES == object->didComplete, "request completed")
+  NSLog(@"Got error code %d, expecting %d", [object->taskError code], NSURLErrorCannotConnectToHost);
   PASS([object->taskError code] == NSURLErrorCannotConnectToHost,
     "unable to connect to host")
 
