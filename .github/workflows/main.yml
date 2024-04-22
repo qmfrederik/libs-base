@@ -175,8 +175,8 @@ jobs:
         with:
           name: Logs - ${{ matrix.name }}
           path: |
-            source/config.log
-            source/Tests/tests.log
+            ${{ github.workspace }}/source/config.log
+            ${{ github.workspace }}/source/Tests/tests.log
 
   ########### Windows ###########
   windows:
@@ -398,5 +398,5 @@ jobs:
         with:
           name: Logs - ${{ matrix.name }}
           path: |
-            source/config.log
-            source/Tests/tests.log
+            ${{ github.workspace }}/source/config.log
+            ${{ github.workspace }}/source/Tests/tests.log
