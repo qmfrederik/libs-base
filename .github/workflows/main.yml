@@ -82,14 +82,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Ubuntu x64 GCC
+          - name: Ubuntu 22.04 x64 GCC
             container: ubuntu:22.04
             library-combo: gnu-gnu-gnu
             CC: gcc
             CXX: g++
             libdir: lib
 
-          - name: Ubuntu x64 Clang gnustep-1.9
+          - name: Ubuntu 22.04 x64 Clang gnustep-1.9
             container: ubuntu:22.04
             library-combo: ng-gnu-gnu
             runtime-version: gnustep-1.9
@@ -97,8 +97,16 @@ jobs:
             CXX: clang++
             libdir: lib
 
-          - name: Ubuntu x64 Clang gnustep-2.0
+          - name: Ubuntu 22.04 x64 Clang gnustep-2.0
             container: ubuntu:22.04
+            library-combo: ng-gnu-gnu
+            runtime-version: gnustep-2.0
+            CC: clang
+            CXX: clang++
+            libdir: lib
+
+          - name: Ubuntu 24.04 x64 Clang gnustep-2.0
+            container: ubuntu:24.04
             library-combo: ng-gnu-gnu
             runtime-version: gnustep-2.0
             CC: clang
