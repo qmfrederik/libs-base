@@ -1,3 +1,15 @@
+2024-04-29  Doug Simons <douglas.simons@keysight.com>
+
+       * NSXMLNode.m:
+       Fix execute_xpath() to return an NSError when xpath expression can't
+	   be evaluated instead of just calling NSLog.
+       	   
+       * NSXMLElement.m: 
+	   Fix setAttributes: and setAttributesWithDictionary: to remove previous
+	   attributes.
+	   Partially fix setNamespaces: to set old ns to NULL, but usage in other
+	   nodes in the tree are not cleaned up, may lead to a crash.
+
 2020-12-23  Doug Simons <doug.simons@eggplant.io>
 
        * NSDateFormatter.m: 
