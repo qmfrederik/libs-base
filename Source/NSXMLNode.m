@@ -837,8 +837,8 @@ execute_xpath(xmlNodePtr node, NSString *xpath_exp, NSDictionary *constants,
         {
           xmlError xmlError = xpathCtx->lastError;
           NSString *message = [NSString stringWithFormat:@"Error: unable to evaluate xpath expression \"%s\" (%d)", xpathExpr, xmlError.code]; 
-          *error = [NSError errorWithDomain: NSCocoaErrorDomain
-                                       code: 4342 // what should this be?
+          *error = [NSError errorWithDomain: @"LibXMLErrorDomain"
+                                       code: xmlError.code
                                    userInfo: @{NSLocalizedDescriptionKey:message}];
         }
       xmlXPathFreeContext(xpathCtx);
