@@ -1,0 +1,73 @@
+on:
+    push:
+    pull_request:
+
+jobs:
+    windows:
+        name: ${{ matrix.name }}
+        runs-on: windows-2019
+        # don't run pull requests from local branches twice
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - name: Windows x64 MinGW Clang gnustep-2.0
+                      arch: x86_64
+                      msystem: MINGW64
+
+                    - name: Windows x64 UCRT64 Clang gnustep-2.0
+                      arch: ucrt-x86_64
+                      msystem: UCRT64
+
+        defaults:
+            run:
+                shell: msys2 {0}
+    
+        steps:
+        - uses: actions/checkout@v3
+    
+        - name: Set up MSYS2 (MinGW)
+          uses: msys2/setup-msys2@v2
+          with:
+            msystem: ${{ matrix.msystem }}
+            update: true
+            install: >
+                git
+                make
+                pkg-config
+                libxml2-devel
+                libxslt-devel
+                libffi-devel
+                libgnutls-devel
+                icu-devel
+                mingw-w64-${{matrix.arch}}-pkg-config
+                mingw-w64-${{matrix.arch}}-libxml2
+                mingw-w64-${{matrix.arch}}-libxslt
+                mingw-w64-${{matrix.arch}}-libffi
+                mingw-w64-${{matrix.arch}}-gnutls
+                mingw-w64-${{matrix.arch}}-icu
+                mingw-w64-${{matrix.arch}}-libobjc2
+                mingw-w64-${{matrix.arch}}-clang
+                mingw-w64-${{matrix.arch}}-lld
+                mingw-w64-${{matrix.arch}}-gnustep-make
+    
+        - name: Build source
+          run: |
+            ./configure
+            make && make install
+    
+        - name: Run tests
+          continue-on-error: true
+          run: |
+            make check
+    
+        - name: Upload logs
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: Logs - ${{ matrix.name }}
+            path: |
+                ./config.log
+                ./Tests/tests.log
