@@ -38,6 +38,15 @@ int main()
     NSInternalInconsistencyException,
     "cannot add attributes to multiple parents");
 
+  [root1 setAttributes:@[attr2]];
+  PASS_EQUAL([root1 attributeForName: @"attr2"], attr2,
+    "setAttributes: added the new attribute");
+  PASS_EQUAL([root1 attributeForName: @"attr1"], nil,
+    "setAttributes: removed the old attribute");
+  PASS_EQUAL([root1 attributes], @[attr2], "attributes are just as set");
+  [root1 setAttributes:@[]];
+  PASS_EQUAL([root1 attributes], @[], "setAttributes:@[] removes all attributes");
+  
 
 
   [root1 release];
