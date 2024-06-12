@@ -367,7 +367,15 @@ extern void ensure_oldNs(xmlNodePtr node);
   NSEnumerator	*enumerator = [attributes objectEnumerator];
   NSXMLNode	*attribute;
 
-  // FIXME: Remove all previous attributes
+  // Remove all previous attributes
+  NSArray *currentAttributes = [self attributes]; 
+  for (int index = [currentAttributes count]-1; index >= 0; index--)
+    {
+	  NSXMLNode *attrNode = [currentAttributes objectAtIndex:index];
+      NSString *name = [attrNode name];
+	  [self removeAttributeForName:name];
+	}
+
   while ((attribute = [enumerator nextObject]) != nil)
     {
       [self addAttribute: attribute];
@@ -384,7 +392,15 @@ extern void ensure_oldNs(xmlNodePtr node);
   NSEnumerator	*en = [attributes keyEnumerator];
   NSString	*key;
 
-  // FIXME: Remove all previous attributes
+  // Remove all previous attributes
+  NSArray *currentAttributes = [self attributes]; 
+  for (int index = [currentAttributes count]-1; index >= 0; index--)
+    {
+	  NSXMLNode *attrNode = [currentAttributes objectAtIndex:index];
+      NSString *name = [attrNode name];
+	  [self removeAttributeForName:name];
+	}
+
   while ((key = [en nextObject]) != nil)
     {
       NSString	*val = [[attributes objectForKey: key] stringValue];
@@ -565,6 +581,8 @@ extern void ensure_oldNs(xmlNodePtr node);
 
   // Remove old namespaces
   xmlFreeNsList(internal->node->nsDef);
+  if (internal->node->ns == internal->node->nsDef)
+    internal->node->ns = NULL;
   internal->node->nsDef = NULL;
 
   // Add new ones
