@@ -6050,7 +6050,11 @@ $as_echo "GNU" >&6; }
     OBJCFLAGS="$OBJCFLAGS -fobjc-runtime=gcc"
   fi
 fi
+
+if test -z "$LIBOBJC"; then
 LIBOBJC=`gnustep-config --objc-libs`
+fi
+
 if test "$LIBOBJC" = ""; then
   as_fn_error $? "The command 'gnustep-config --objc-libs' (provided by the gnustep-make package) returned no Objective-C library.  Unable to continue configuring without Objective-C support." "$LINENO" 5
   exit 1

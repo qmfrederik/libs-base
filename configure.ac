@@ -1270,7 +1270,11 @@ else
     OBJCFLAGS="$OBJCFLAGS -fobjc-runtime=gcc"
   fi
 fi
-LIBOBJC=`gnustep-config --objc-libs`
+
+if test -z "$LIBOBJC"; then
+  LIBOBJC=`gnustep-config --objc-libs`
+fi
+
 if test "$LIBOBJC" = ""; then
   AC_MSG_ERROR([The command 'gnustep-config --objc-libs' (provided by the gnustep-make package) returned no Objective-C library.  Unable to continue configuring without Objective-C support.])
   exit 1
