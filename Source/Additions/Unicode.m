@@ -1570,9 +1570,6 @@ GSFromUnicode(unsigned char **dst, unsigned int *size, const unichar *src,
   unsigned	ltsize = 0;
   BOOL		swapped = NO;
   BOOL		result = YES;
-#ifdef HAVE_ICONV
-  iconv_t	cd = (iconv_t)-1;
-#endif
 
   if (options & GSUniBOM)
     {
@@ -1662,7 +1659,10 @@ GSFromUnicode(unsigned char **dst, unsigned int *size, const unichar *src,
 		    }
 
 		  // 0xfeff is a zero-width-no-break-space inside text
-		  if (u1 >= 0xdc00 && u1 <= 0xdfff)	// bad pairing
+		  if (u1 == 0xfffe			// unexpected BOM
+		    || u1 == 0xffff			// not a character
+		    || (u1 >= 0xfdd0 && u1 <= 0xfdef)	// invalid character
+		    || (u1 >= 0xdc00 && u1 <= 0xdfff))	// bad pairing
 		    {
 		      if (strict)
 			{
@@ -1689,7 +1689,7 @@ GSFromUnicode(unsigned char **dst, unsigned int *size, const unichar *src,
 		      u2 = src[spos++];
 		      u2 = (((u2 & 0xff00) >> 8) + ((u2 & 0x00ff) << 8));
 
-		      if ((u2 < 0xdc00) || (u2 > 0xdfff))
+		      if ((u2 < 0xdc00) && (u2 > 0xdfff))
 			{
 			  spos--;
 			  if (strict)
@@ -1781,7 +1781,10 @@ GSFromUnicode(unsigned char **dst, unsigned int *size, const unichar *src,
 		    }
 
 		  // 0xfeff is a zero-width-no-break-space inside text
-		  if (u1 >= 0xdc00 && u1 <= 0xdfff)	// bad pairing
+		  if (u1 == 0xfffe			// unexpected BOM
+		    || u1 == 0xffff			// not a character
+		    || (u1 >= 0xfdd0 && u1 <= 0xfdef)	// invalid character
+		    || (u1 >= 0xdc00 && u1 <= 0xdfff))	// bad pairing
 		    {
 		      if (strict)
 			{
@@ -1807,7 +1810,7 @@ GSFromUnicode(unsigned char **dst, unsigned int *size, const unichar *src,
 		      /* get second unichar */
 		      u2 = src[spos++];
 
-		      if ((u2 < 0xdc00) || (u2 > 0xdfff))
+		      if ((u2 < 0xdc00) && (u2 > 0xdfff))
 			{
 			  spos--;
 			  if (strict)
@@ -1876,147 +1879,6 @@ GSFromUnicode(unsigned char **dst, unsigned int *size, const unichar *src,
         break;
 
       case NSNonLossyASCIIStringEncoding:
-        {
-          unsigned int  index = 0;
-          unsigned int  count = 0;
-
-          if (YES == swapped)
-            {
-              while (index < slen)
-                {
-                  unichar	u = src[index++];
-
-                  u = (((u & 0xff00) >> 8) + ((u & 0x00ff) << 8));
-                  if (u < 256)
-                    {
-                      if ((u >= ' ' && u < 127)
-                        || '\r' == u || '\n' == u || '\t' == u)
-                        {
-                          count++;
-                          if ('\\' == u)
-                            {
-                              count++;
-                            }
-                        }
-                      else
-                        {
-                          count += 4;
-                        }
-                    }
-                  else
-                    {
-                      count += 12;
-                    }
-                }
-            }
-          else
-            {
-              while (index < slen)
-                {
-                  unichar	u = src[index++];
-
-                  if (u < 256)
-                    {
-                      if ((u >= ' ' && u < 127)
-                        || '\r' == u || '\n' == u || '\t' == u)
-                        {
-                          count++;
-                          if ('\\' == u)
-                            {
-                              count++;
-                            }
-                        }
-                      else
-                        {
-                          count += 4;
-                        }
-                    }
-                  else
-                    {
-                      count += 6;
-                    }
-                }
-            }
-          if (dst == 0)
-            {
-              /* Just counting bytes ...
-               */
-              dpos = count;
-            }
-          else
-            {
-              /* We can now check the destination buffer size and allocate
-               * more space in one go, before entering the loop where we
-               * deal with each character.
-               */
-              if (count > bsize)
-                {
-                  if (zone == 0)
-                    {
-                      result = NO; /* No buffer growth possible ... fail. */
-                      goto done;
-                    }
-                  else
-                    {
-                      uint8_t	*tmp;
-
-                      tmp = NSZoneMalloc(zone, count + extra);
-                      if (ptr != buf && ptr != *dst)
-                        {
-                          NSZoneFree(zone, ptr);
-                        }
-                      ptr = tmp;
-                      if (ptr == 0)
-                        {
-                          return NO;	/* Not enough memory */
-                        }
-                      bsize = count;
-                    }
-                }
-              index = 0;
-              while (index < slen)
-                {
-                  unichar	u = src[index++];
-
-                  if (YES == swapped)
-                    {
-                      u = (((u & 0xff00) >> 8) + ((u & 0x00ff) << 8));
-                    }
-                  if (u < 256)
-                    {
-                      if ((u >= ' ' && u < 127)
-                        || '\r' == u || '\n' == u || '\t' == u)
-                        {
-                          ptr[dpos++] = (unsigned char)u;
-                          if ('\\' == u)
-                            {
-                              ptr[dpos++] = (unsigned char)u;
-                            }
-                        }
-                      else
-                        {
-                          char octchars[] = "01234567";
-                          ptr[dpos++] = '\\';
-                          ptr[dpos++] = octchars[(u >> 6) & 7];
-                          ptr[dpos++] = octchars[(u >> 3) & 7];
-                          ptr[dpos++] = octchars[u & 7];
-                        }
-                    }
-                  else
-                    {
-                      char hexchars[] = "0123456789abcdef";
-                      ptr[dpos++] = '\\';
-                      ptr[dpos++] = 'u';
-                      ptr[dpos++] = hexchars[(u >> 12) & 0xF];
-                      ptr[dpos++] = hexchars[(u >> 8) & 0xF];
-                      ptr[dpos++] = hexchars[(u >> 4) & 0xF];
-                      ptr[dpos++] = hexchars[u & 0xF];
-                    }
-                }
-            }
-          }
-        goto done;
-
       case NSASCIIStringEncoding:
 	base = 128;
 	goto bases;
@@ -2036,7 +1898,7 @@ bases:
 	  }
         else
 	  {
-	    /* Because we know that each ascii character is exactly
+	    /* Because we know that each ascii chartacter is exactly
 	     * one unicode character, we can check the destination
 	     * buffer size and allocate more space in one go, before
 	     * entering the loop where we deal with each character.
@@ -2271,6 +2133,7 @@ tables:
 iconv_start:
 	{
 	  struct _strenc_	*encInfo;
+	  iconv_t	cd;
 	  unsigned char	*inbuf;
 	  unsigned char	*outbuf;
 	  size_t	inbytesleft;
@@ -2383,6 +2246,8 @@ iconv_start:
 		    }
 		}
 	    } while (!done || rval != 0);
+	  // close the converter
+	  iconv_close(cd);
 	}
 #else
 	result = NO;
@@ -2391,85 +2256,72 @@ iconv_start:
     }
 
   done:
-#ifdef HAVE_ICONV
-  if (cd != (iconv_t)-1)
+
+  /*
+   * Post conversion ... set output values.
+   */
+  if (extra != 0)
     {
-      iconv_close(cd);
+      ptr[dpos] = (unsigned char)0;
     }
-#endif
-
-  if (NULL == ptr)
+  *size = dpos;
+  if (dst != 0 && (result == YES || (options & GSUniShortOk)))
     {
-      *size = 0;
+      if (options & GSUniTemporary)
+	{
+	  unsigned	bytes = dpos + extra;
+	  void		*r;
+
+	  /*
+	   * Temporary string was requested ... make one.
+	   */
+	  r = GSAutoreleasedBuffer(bytes);
+	  memcpy(r, ptr, bytes);
+	  if (ptr != buf && ptr != *dst)
+	    {
+	      NSZoneFree(zone, ptr);
+	    }
+	  ptr = r;
+	  *dst = ptr;
+	}
+      else if (zone != 0 && (ptr == buf || bsize > dpos))
+	{
+	  unsigned	bytes = dpos + extra;
+
+	  /*
+	   * Resizing is permitted - try ensure we return a buffer
+	   * which is just big enough to hold the converted string.
+	   */
+	  if (ptr == buf || ptr == *dst)
+	    {
+	      unsigned char	*tmp;
+
+	      tmp = NSZoneMalloc(zone, bytes);
+	      if (tmp != 0)
+		{
+		  memcpy(tmp, ptr, bytes);
+		}
+	      ptr = tmp;
+	    }
+	  else
+	    {
+	      ptr = NSZoneRealloc(zone, ptr, bytes);
+	    }
+	  *dst = ptr;
+	}
+      else if (ptr == buf)
+	{
+	  ptr = NULL;
+	  result = NO;
+	}
+      else
+	{
+	  *dst = ptr;
+	}
     }
-  else
+  else if (ptr != buf && dst != 0 && ptr != *dst)
     {
-      /*
-       * Post conversion ... set output values.
-       */
-      if (extra != 0)
-        {
-          ptr[dpos] = (unsigned char)0;
-        }
-      *size = dpos;
-      if (dst != 0 && (result == YES || (options & GSUniShortOk)))
-        {
-          if (options & GSUniTemporary)
-            {
-              unsigned	bytes = dpos + extra;
-              void		*r;
-
-              /*
-               * Temporary string was requested ... make one.
-               */
-              r = GSAutoreleasedBuffer(bytes);
-              memcpy(r, ptr, bytes);
-              if (ptr != buf && ptr != *dst)
-                {
-                  NSZoneFree(zone, ptr);
-                }
-              ptr = r;
-              *dst = ptr;
-            }
-          else if (zone != 0 && (ptr == buf || bsize > dpos))
-            {
-              unsigned	bytes = dpos + extra;
-
-              /*
-               * Resizing is permitted - try ensure we return a buffer
-               * which is just big enough to hold the converted string.
-               */
-              if (ptr == buf || ptr == *dst)
-                {
-                  unsigned char	*tmp;
-
-                  tmp = NSZoneMalloc(zone, bytes);
-                  if (tmp != 0)
-                    {
-                      memcpy(tmp, ptr, bytes);
-                    }
-                  ptr = tmp;
-                }
-              else
-                {
-                  ptr = NSZoneRealloc(zone, ptr, bytes);
-                }
-              *dst = ptr;
-            }
-          else if (ptr == buf)
-            {
-              ptr = NULL;
-              result = NO;
-            }
-          else
-            {
-              *dst = ptr;
-            }
-        }
-      else if (ptr != buf && dst != 0 && ptr != *dst)
-        {
-          NSZoneFree(zone, ptr);
-        }
+      NSZoneFree(zone, ptr);
     }
 
   if (dst)
