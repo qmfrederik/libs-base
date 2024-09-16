@@ -115,23 +115,37 @@ typedef struct {
     {
       GSMimeHeader	*h;
 
+      /* Remove existing headers matching the ones we are setting.
+       */
+      e = [(NSArray*)headers objectEnumerator];
+      while ((h = [e nextObject]) != nil)
+        {
+	  NSString	*n = [h namePreservingCase: YES];
+	  
+   	  [this->headers removeObjectForKey: n];
+	}
+      /* Set new headers, joining values where we have multiple headers
+       * with the same name.
+       */
       e = [(NSArray*)headers objectEnumerator];
       while ((h = [e nextObject]) != nil)
         {
 	  NSString	*n = [h namePreservingCase: YES];
 	  NSString	*v = [h fullValue];
+	  NSString	*o = [this->headers objectForKey: n];
 
-          // If key == "Set-Cookie"/"Set-Cookie2" there could be multiple ones...
-          if ([n containsString: @"Set-Cookie"] && [self _valueForHTTPHeaderField: n])
-            {
-              NSMutableString *c = AUTORELEASE([[self _valueForHTTPHeaderField: n] mutableCopy]);
-              [c appendFormat: @", %@", v];
-              [self _setValue: c forHTTPHeaderField: n];
-            }
-          else // Otherwise just set the header field...
-            {
-              [self _setValue: v forHTTPHeaderField: n];
-            }
+	  if ([v isKindOfClass: [NSString class]] && [v length] > 0)
+	    {
+	      if ([o length] > 0)
+		{
+		  v = [NSString stringWithFormat: @"%@, %@", o, v];
+		}
+	      [self _setValue: v forHTTPHeaderField: n];
+	    }
+	  else if (nil == o)
+	    {
+	      [self _setValue: @"" forHTTPHeaderField: n];
+	    }
 	}
     }
   [self _checkHeaders];
