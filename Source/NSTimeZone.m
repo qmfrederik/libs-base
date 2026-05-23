@@ -510,7 +510,7 @@ static NSString *_time_zone_path(NSString *subpath, NSString *type)
                 {
                   zone = [[GSWindowsTimeZone alloc] initWithName: name data: 0];
                   DESTROY(self);
-                  return zone;
+                  return (GSPlaceholderTimeZone*)zone;
                 }
 #else
 		{
@@ -1480,7 +1480,7 @@ static int		uninitialisedOffset = 100000;
         // See: https://unicode-org.github.io/cldr-staging/charts/latest/supplemental/zone_tzid.html
         tzName = tz.StandardName;
 #else
-        dst = GetTimeZoneInformation(&tz);
+        dst = GetDynamicTimeZoneInformation(&tz);
 
         if (dst == TIME_ZONE_ID_DAYLIGHT)
           tzName = tz.DaylightName;
