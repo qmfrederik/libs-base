@@ -407,6 +407,7 @@ static inline void gs_consumed(id NS_CONSUMED GS_UNUSED_ARG o) { return; }
 
 #else /* GNUSTEP_WITH[OUT]_DLL */
 
+#  define GS_EXPORT_CLASS
 #  define GS_EXPORT extern
 #  define GS_DECLARE
 
