@@ -71,3 +71,57 @@ jobs:
             path: |
                 ./config.log
                 ./Tests/tests.log
+
+    linux:
+      runs-on: ubuntu-latest
+      env:
+        CLANG_VERSION: 23
+      container:
+        image: ${{ matrix.image }}
+      strategy:
+        fail-fast: false
+        matrix:
+          include:
+            - name: ubuntu-26.04
+              image: ubuntu:26.04
+              family: ubuntu
+      steps:
+        - name: Add LLVM apt repository (Ubuntu)
+          run: |
+            apt-get update
+            apt-get install -y ca-certificates curl
+            install -d /etc/apt/keyrings
+            curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key -o /etc/apt/keyrings/apt.llvm.org.asc
+            . /etc/os-release
+            echo "deb [signed-by=/etc/apt/keyrings/apt.llvm.org.asc] http://apt.llvm.org/${VERSION_CODENAME}/ llvm-toolchain-${VERSION_CODENAME}-${CLANG_VERSION} main" > /etc/apt/sources.list.d/llvm.list
+        - name: Install dependencies (Ubuntu)
+          run: |
+            apt-get update
+            apt-get install -y gobjc-13 libstdc++-13-dev clang-${CLANG_VERSION} lld-${CLANG_VERSION} curl zip unzip tar git pkg-config make python3-venv
+            # The Conan profile expects /usr/bin/clang and /usr/bin/clang++
+            update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSION} 100
+            update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION} 100
+        - name: Check LLVM, Cmake version
+          run: |
+            clang --version
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+        - name: Install conan
+          run: |
+            python3 -m venv .python3/
+            .python3/bin/pip install conan==2.33.0
+            .python3/bin/pip install pygit2
+            .python3/bin/conan --version
+        - name: Configure remote and profile
+          run: |
+            .python3/bin/conan remote add conan-gnustep https://gitlab.com/api/v4/projects/72962159/packages/conan
+            mkdir -p  ~/.conan2/profiles/
+            curl -X GET https://raw.githubusercontent.com/qmfrederik/conan-gnustep/refs/heads/main/profiles/linux-clang-nodist > ~/.conan2/profiles/default
+            .python3/bin/conan profile show
+        - name: Build
+          run: |
+            .python3/bin/conan install .
+            . ./conanbuild.sh
+            PKG_CONFIG_PATH=$PWD ./configure --disable-importing-config-file --disable-icu-config
+            make -j$(nproc)

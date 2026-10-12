@@ -3,3 +3,6 @@ obj/
 config.*
 GSConfig.h
 base.make
+
+*.pc
+*conan*.sh

@@ -1,0 +1,30 @@
+# To build locally, run:
+#
+# python3 -m venv .venv
+# . .venv/bin/activate
+# pip install conan pygit2
+#
+# conan remote add gnustep https://gitlab.com/api/v4/projects/72962159/packages/conan
+# curl -X GET https://raw.githubusercontent.com/qmfrederik/conan-gnustep/refs/heads/main/profiles/linux-clang-nodist > ~/.conan2/profiles/default
+#
+# conan install .
+# . conanbuild.sh
+# PKG_CONFIG_PATH=$PWD ./configure --disable-importing-config-file --disable-icu-config
+
+[requires]
+libobjc2/[^2.2.1]
+libdispatch/[^6.4.0]
+libffi/3.4.8
+libxml2/2.15.4
+libxslt/1.1.45
+gnutls/3.8.7
+icu/78.2
+libcurl/8.22.0
+libiconv/1.17
+
+[tool_requires]
+gnustep-make/[^2.9.3]
+
+[generators]
+AutotoolsDeps
+PkgConfigDeps
