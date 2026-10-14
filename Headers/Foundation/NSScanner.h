@@ -42,6 +42,7 @@ extern "C" {
 /*
  * NSScanner class
  */
+GS_EXPORT_CLASS
 @interface NSScanner : NSObject <NSCopying>
 {
 #if	GS_EXPOSE(NSScanner)

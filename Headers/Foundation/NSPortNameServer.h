@@ -44,6 +44,7 @@ extern "C" {
 
 @class	NSPort, NSString, NSMutableArray;
 
+GS_EXPORT_CLASS
 @interface	NSPortNameServer : NSObject
 + (id) systemDefaultPortNameServer;
 - (NSPort*) portForName: (NSString*)name;

@@ -48,6 +48,7 @@ extern "C" {
 @class NSLock;
 @class NSOperationQueue;
 
+GS_EXPORT_CLASS
 @interface NSNotification : NSObject <NSCopying, NSCoding>
 
 /* Creating a Notification Object */

@@ -47,6 +47,7 @@ extern "C" {
 DEFINE_BLOCK_TYPE(GSBlockPredicateBlock, BOOL, id, GS_GENERIC_CLASS(NSDictionary,NSString*,id)*);
 #endif
 
+GS_EXPORT_CLASS
 @interface NSPredicate : NSObject <NSCoding, NSCopying>
 
 + (NSPredicate *) predicateWithFormat: (NSString *)format, ...;

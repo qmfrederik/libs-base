@@ -61,6 +61,7 @@ extern "C" {
 #import	<Foundation/NSArray.h>
 #import	<Foundation/NSCoder.h>
 
+GS_EXPORT_CLASS
 @interface NSAttributedString : NSObject <NSCoding, NSCopying, NSMutableCopying>
 {
 }

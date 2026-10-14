@@ -53,6 +53,7 @@ enum
 };
 typedef NSUInteger NSExpressionType;
 
+GS_EXPORT_CLASS
 @interface NSExpression : NSObject <NSCoding, NSCopying>
 {
 #if	GS_EXPOSE(NSExpression)

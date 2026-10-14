@@ -90,6 +90,7 @@ extern "C" {
 - (NSString*) stringByUnescapingXML;
 @end
 
+GS_EXPORT_CLASS
 @interface GSXMLDocument : NSObject <NSCopying>
 {
   void	*lib;	// pointer to xmllib pointer of xmlDoc struct
@@ -119,6 +120,7 @@ extern "C" {
 
 
 
+GS_EXPORT_CLASS
 @interface GSXMLNamespace : NSObject <NSCopying>
 {
   void	*lib;          /* pointer to struct xmlNs in the gnome xmllib */
@@ -140,6 +142,7 @@ extern "C" {
 
 /* XML Node */
 
+GS_EXPORT_CLASS
 @interface GSXMLNode : NSObject <NSCopying>
 {
   void  *lib;      /* pointer to struct xmlNode from libxml */
@@ -533,6 +536,7 @@ GS_EXPORT_CLASS @interface GSXPathNodeSet : GSXPathObject
  * containing the fault details.
  * </p>
  */
+GS_EXPORT_CLASS
 @interface	GSXMLRPC : NSObject <NSURLHandleClient>
 {
 @private

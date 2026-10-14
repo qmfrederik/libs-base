@@ -361,6 +361,7 @@ GS_EXPORT NSString * const NSNetServicesErrorDomain;
  * </p>
  */
 
+GS_EXPORT_CLASS
 @interface NSNetService : NSObject <NSNetServiceDelegate>
 {
 #if	GS_EXPOSE(NSNetService)

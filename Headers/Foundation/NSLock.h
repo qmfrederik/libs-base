@@ -74,6 +74,7 @@ extern "C" {
  * [NSRecursiveLock], have different restrictions.
  * </p>
  */
+GS_EXPORT_CLASS
 @interface NSLock : NSObject <NSLocking>
 {
 #if	GS_EXPOSE(NSLock)
@@ -125,6 +126,7 @@ extern "C" {
 /**
  * NSCondition provides an interface to POSIX condition variables.
  */
+GS_EXPORT_CLASS
 @interface NSCondition : NSObject <NSLocking>
 {
 #if	GS_EXPOSE(NSCondition)
@@ -175,6 +177,7 @@ extern "C" {
  *  condition is equal to a particular value.  The condition is set on
  *  initialization and whenever the lock is relinquished.
  */
+GS_EXPORT_CLASS
 @interface NSConditionLock : NSObject <NSLocking>
 {
 #if	GS_EXPOSE(NSConditionLock)
@@ -275,6 +278,7 @@ extern "C" {
  * thread must also unlock it (n) times before another thread 
  * can acquire the lock.
  */
+GS_EXPORT_CLASS
 @interface NSRecursiveLock : NSObject <NSLocking>
 {
 #if	GS_EXPOSE(NSRecursiveLock)

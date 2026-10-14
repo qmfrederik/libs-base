@@ -301,5 +301,8 @@ DEFINE_BLOCK_TYPE(NSComparator, NSComparisonResult, id, id);
 #if	defined(__cplusplus)
 }
 #endif
-
+/* Undefine "interface" defined in Visual Studio MSVC headers. */
+#if defined(_MSC_VER) && defined(interface)
+#undef interface
+#endif
 #endif /* __NSObjCRuntime_h_GNUSTEP_BASE_INCLUDE */

@@ -37,7 +37,8 @@
 extern "C" {
 #endif
 
-GS_ROOT_CLASS @interface NSProxy <NSObject>
+GS_EXPORT_CLASS GS_ROOT_CLASS
+@interface NSProxy <NSObject>
 {
 @public
     Class	isa;

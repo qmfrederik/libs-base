@@ -42,6 +42,7 @@ extern "C" {
  *
  * <p>See the [NSConnection] and [NSPortCoder] classes.</p>
  */
+GS_EXPORT_CLASS
 @interface	NSPortMessage : NSObject
 {
 #if	GS_EXPOSE(NSPortMessage)

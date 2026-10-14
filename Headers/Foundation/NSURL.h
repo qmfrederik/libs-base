@@ -56,6 +56,7 @@ GS_EXPORT NSString* const NSURLFileScheme;
  * Handling of the underlying resources is carried out by NSURLHandle
  * objects, but NSURL provides a simplified API wrapping these objects.
  */
+GS_EXPORT_CLASS
 @interface NSURL: NSObject <NSCoding, NSCopying, NSURLHandleClient>
 {
 #if	GS_EXPOSE(NSURL)

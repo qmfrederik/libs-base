@@ -284,6 +284,8 @@ typedef NSUInteger NSStringEncodingConversionOptions;
  *   that of the receiver which returned them.
  * </p>
  */
+
+GS_EXPORT_CLASS
 @interface NSString :NSObject <NSCoding, NSCopying, NSMutableCopying>
 
 + (id) string;

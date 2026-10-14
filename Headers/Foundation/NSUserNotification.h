@@ -61,6 +61,7 @@ enum
 typedef NSInteger NSUserNotificationActivationType;
 
 
+GS_EXPORT_CLASS
 @interface NSUserNotification : NSObject <NSCopying>
 {
 #if	GS_EXPOSE(NSUserNotification)

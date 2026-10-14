@@ -102,6 +102,7 @@ GS_EXPORT NSString * const NSISO8601Calendar;
  * Provides information describing language, date and time, and currency
  * information.
  */
+GS_EXPORT_CLASS
 @interface NSLocale : NSObject <NSCoding, NSCopying>
 {
 #if	GS_EXPOSE(NSLocale)

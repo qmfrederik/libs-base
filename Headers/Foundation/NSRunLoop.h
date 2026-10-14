@@ -129,7 +129,7 @@ GS_EXPORT_CLASS @interface NSRunLoop : NSObject
  * run loop.
  */
 typedef	enum {
-#ifdef __MINGW__
+#ifdef _WIN32
     ET_HANDLE,	/* Watch for an I/O event on a handle.		*/
     ET_RPORT,	/* Watch for message arriving on port.		*/
     ET_WINMSG,	/* Watch for a message on a window handle.	*/

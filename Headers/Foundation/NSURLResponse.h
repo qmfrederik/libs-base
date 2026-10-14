@@ -49,6 +49,7 @@ extern "C" {
 /**
  * The response to an NSURLRequest
  */
+GS_EXPORT_CLASS
 @interface NSURLResponse :  NSObject <NSCoding, NSCopying>
 {
 #if	GS_EXPOSE(NSURLResponse)

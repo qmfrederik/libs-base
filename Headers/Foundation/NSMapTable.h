@@ -64,6 +64,7 @@ enum {
 
 typedef NSUInteger NSMapTableOptions;
 
+GS_EXPORT_CLASS
 @interface NSMapTable : NSObject <NSCopying, NSCoding, NSFastEnumeration>
 
 /** Return a map table initialised using the specified options for

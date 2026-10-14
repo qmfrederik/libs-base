@@ -86,6 +86,7 @@ enum {
 DEFINE_BLOCK_TYPE(GSDataDeallocatorBlock, void, void*, NSUInteger);
 #endif
 
+GS_EXPORT_CLASS
 @interface NSData : NSObject <NSCoding, NSCopying, NSMutableCopying>
 
 // Allocating and Initializing a Data Object

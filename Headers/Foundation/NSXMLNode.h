@@ -91,6 +91,7 @@ typedef NSUInteger NSXMLNodeKind;
 /**
  * The most primitive unit in an XML document.
  */
+GS_EXPORT_CLASS
 @interface NSXMLNode : NSObject <NSCopying>
 {
 #if     GS_NONFRAGILE

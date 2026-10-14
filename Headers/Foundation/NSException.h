@@ -105,6 +105,7 @@ extern "C" {
    message before the program terminates.
    </p>
 */
+GS_EXPORT_CLASS
 @interface NSException : NSObject <NSCoding, NSCopying>
 {
 #if	GS_EXPOSE(NSException)

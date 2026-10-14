@@ -54,6 +54,7 @@ typedef enum {
 /**
  * Represents a user/password credential
  */
+GS_EXPORT_CLASS
 @interface NSURLCredential : NSObject <NSCopying>
 {
 #if	GS_EXPOSE(NSURLCredential)

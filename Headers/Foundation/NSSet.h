@@ -48,6 +48,7 @@ extern "C" {
 @class GS_GENERIC_CLASS(NSDictionary, KeyT:id<NSCopying>, ValT);
 @class NSString;
 
+GS_EXPORT_CLASS
 @interface GS_GENERIC_CLASS(NSSet, __covariant ElementT) : NSObject <NSCoding,
                                                              NSCopying,
                                                              NSMutableCopying,
@@ -136,6 +137,7 @@ DEFINE_BLOCK_TYPE(GSSetFilterBlock, BOOL, GS_GENERIC_TYPE(ElementT), BOOL*);
 #endif
 @end
 
+GS_EXPORT_CLASS
 @interface GS_GENERIC_CLASS(NSMutableSet, ElementT):
   GS_GENERIC_CLASS(NSSet, ElementT)
 
@@ -154,6 +156,7 @@ DEFINE_BLOCK_TYPE(GSSetFilterBlock, BOOL, GS_GENERIC_TYPE(ElementT), BOOL*);
 - (void) unionSet: (GS_GENERIC_CLASS(NSSet, ElementT)*)other;
 @end
 
+GS_EXPORT_CLASS
 @interface GS_GENERIC_CLASS(NSCountedSet, ElementT) :
   GS_GENERIC_CLASS(NSMutableSet, ElementT)
 

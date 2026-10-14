@@ -64,6 +64,7 @@ enum {
 
 typedef NSUInteger NSHashTableOptions;
 
+GS_EXPORT_CLASS
 @interface NSHashTable : NSObject <NSCopying, NSCoding, NSFastEnumeration>
 
 + (id) hashTableWithOptions: (NSPointerFunctionsOptions)options;
