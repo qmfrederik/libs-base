@@ -2795,10 +2795,10 @@ GS_ADD_LIBRARY_PATH([${ffi_libdir}])
 fi
 
 if test "$do_broken_libffi" = "no"; then
-  if test "$PKGCONFIG" = "yes"; then
-    if pkg-config --exists libffi; then
+  if test -n "$PKG_CONFIG"; then
+    if "$PKG_CONFIG" --exists libffi; then
       pkg_config_libffi=yes
-      ffi_CFLAGS=`pkg-config --cflags libffi`;
+      ffi_CFLAGS=`"$PKG_CONFIG" --cflags libffi`;
       CPPFLAGS="$CPPFLAGS $ffi_CFLAGS"
       INCLUDE_FLAGS="$INCLUDE_FLAGS $ffi_CFLAGS"
     fi
@@ -2858,7 +2858,7 @@ if test $enable_libffi = yes; then
             [Define if using the libffi library for invocations])
   WITH_FFI=libffi
   if test "$pkg_config_libffi" = "yes"; then
-    ffi_LIBS=`pkg-config --libs libffi`
+    ffi_LIBS=`"$PKG_CONFIG" --libs libffi`
   else
     ffi_LIBS=-lffi
   fi
@@ -3190,12 +3190,12 @@ if test $enable_tls = yes; then
   saved_LIBS="$LIBS"
   saved_CFLAGS="$CFLAGS"
 
-  if test $PKGCONFIG = yes; then
-    if pkg-config --exists gnutls; then
+  if test -n "$PKG_CONFIG"; then
+    if "$PKG_CONFIG" --exists gnutls; then
       AC_MSG_CHECKING(gnutls support)
       HAVE_GNUTLS=1
-      TLS_CFLAGS=`pkg-config --cflags gnutls`
-      TLS_LIBS=`pkg-config --libs gnutls`
+      TLS_CFLAGS=`"$PKG_CONFIG" --cflags gnutls`
+      TLS_LIBS=`"$PKG_CONFIG" --libs gnutls`
     fi
   fi
 
@@ -3209,7 +3209,7 @@ if test $enable_tls = yes; then
     fi
   fi
   if test $HAVE_GNUTLS = 1; then
-    if ! pkg-config --atleast-version=2.12 gnutls; then
+    if ! "$PKG_CONFIG" --atleast-version=2.12 gnutls; then
       AC_CHECK_LIB(gcrypt, gcry_control, have_gcrypt=yes, have_gcrypt=no)
       if test "$have_gcrypt" = "no"; then
         HAVE_GNUTLS=0
