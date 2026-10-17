@@ -566,7 +566,7 @@ GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
 
 @end
 
-#if     defined(HAVE_GNUTLS)
+#if     defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
 
 @interface      GSTLSHandler : GSStreamHandler
 {
@@ -594,7 +594,7 @@ GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
  * If the operation fails, this sets the error number.
  */
 static ssize_t
-GSTLSPull(gnutls_transport_ptr_t handle, void *buffer, size_t len)
+GSTLSPull(GSTLSTransportPtr handle, void *buffer, size_t len)
 {
   ssize_t       result;
   GSTLSHandler  *tls = (GSTLSHandler*)handle;
@@ -625,7 +625,7 @@ GSTLSPull(gnutls_transport_ptr_t handle, void *buffer, size_t len)
  * If the operation fails, this sets the error number.
  */
 static ssize_t
-GSTLSPush(gnutls_transport_ptr_t handle, const void *buffer, size_t len)
+GSTLSPush(GSTLSTransportPtr handle, const void *buffer, size_t len)
 {
   ssize_t       result;
   GSTLSHandler  *tls = (GSTLSHandler*)handle;
@@ -1011,9 +1011,9 @@ static NSArray  *keys = nil;
 
 @end
 
-#else   /* HAVE_GNUTLS */
+#else   /* HAVE_GNUTLS || HAVE_SCHANNEL */
 
-/* GNUTLS not available ...
+/* TLS not available ...
  */
 @interface      GSTLSHandler : GSStreamHandler
 @end
@@ -1086,7 +1086,7 @@ static NSArray  *keys = nil;
     && [tls isEqualToString: NSStreamSocketSecurityLevelNone] == NO)
     {
       NSLog(@"Attempt to use SSL/TLS without support.");
-      NSLog(@"Please reconfigure gnustep-base with GNU TLS.");
+      NSLog(@"Please reconfigure gnustep-base with TLS support.");
     }
   return;
 }
@@ -1098,7 +1098,7 @@ static NSArray  *keys = nil;
 }
 @end
 
-#endif   /* HAVE_GNUTLS */
+#endif   /* HAVE_GNUTLS || HAVE_SCHANNEL */
 
 
 

@@ -1832,7 +1832,7 @@ debugWrite(GSHTTPURLHandle *handle, NSData *data)
 	      if (sslClass == 0)
 		{
 		  [self backgroundLoadDidFailWithReason: @"https not supported"
-		    @" ... needs gnustep-base built with GNUTLS"];
+		    @" ... needs gnustep-base built with TLS support"];
 		  return;
 		}
 	      sock = [sslClass fileHandleAsClientInBackgroundAtAddress: host
@@ -1877,7 +1877,7 @@ debugWrite(GSHTTPURLHandle *handle, NSData *data)
 	      if (sslClass == 0)
 		{
 		  [self backgroundLoadDidFailWithReason: @"https not supported"
-		    @" ... needs gnustep-base built with GNUTLS"];
+		    @" ... needs gnustep-base built with TLS support"];
 		  return;
 		}
 	      sock = [sslClass fileHandleAsClientInBackgroundAtAddress: host

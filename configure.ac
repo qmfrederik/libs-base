@@ -3661,8 +3661,36 @@ AC_SUBST(HAVE_LIBXML)
 #--------------------------------------------------------------------
 AC_ARG_ENABLE(tls,
   [AS_HELP_STRING([--disable-tls],
-  [Disable use of GNUTLS])],,
+  [Disable use of TLS])],,
   enable_tls=yes)
+AC_ARG_WITH(tls-library,
+  [AS_HELP_STRING([--with-tls-library=LIB],
+  [Select the TLS implementation: gnutls (the default) or schannel
+   (the native TLS implementation on Windows)])],
+  tls_library="$withval", tls_library=gnutls)
+
+HAVE_GNUTLS=0
+HAVE_SCHANNEL=0
+if test $enable_tls = yes; then
+  case "$tls_library" in
+    gnutls) ;;
+    schannel)
+      case "$target_os" in
+        mingw*|windows) ;;
+        *) AC_MSG_ERROR([SChannel TLS support is only available on Windows]);;
+      esac
+      AC_CHECK_HEADER([schannel.h], HAVE_SCHANNEL=1,
+        AC_MSG_ERROR([Missing schannel.h for SChannel TLS support]),
+        [#include <windows.h>
+#define SECURITY_WIN32
+#include <security.h>
+])
+      LIBS="-lsecur32 -lcrypt32 -lncrypt -lbcrypt $LIBS"
+      enable_tls=schannel
+      ;;
+    *) AC_MSG_ERROR([Unknown TLS library '$tls_library' (use gnutls or schannel)]);;
+  esac
+fi
 
 if test $enable_tls = yes; then
   HAVE_GNUTLS=0
@@ -3722,7 +3750,7 @@ if test $enable_tls = yes; then
     fi
     AC_CHECK_FUNCS(gnutls_x509_privkey_import2)
   fi
-else
+elif test $HAVE_SCHANNEL = 0; then
   AC_MSG_WARN([Disabled support for TLS funtionality.])
   HAVE_GNUTLS=0
 fi
@@ -3730,6 +3758,11 @@ if test $HAVE_GNUTLS = 1; then
   AC_DEFINE_UNQUOTED(HAVE_GNUTLS,$HAVE_GNUTLS,[Define if libgnutls available])
 fi
 AC_SUBST(HAVE_GNUTLS)
+if test $HAVE_SCHANNEL = 1; then
+  AC_DEFINE(HAVE_SCHANNEL,1,
+    [Define if the Windows SChannel TLS implementation is used])
+fi
+AC_SUBST(HAVE_SCHANNEL)
 
 #--------------------------------------------------------------------
 # Check for NSNetServices

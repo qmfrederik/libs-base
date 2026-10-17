@@ -41,6 +41,24 @@ START_SET("TLS support")
   cred = [GSTLSCredentials selfSigned: YES];
   NSLog(@"%@", cred);
   PASS(cred != nil, "generates self signed certificate");
+#elif GS_USE_SCHANNEL
+  GSTLSCredentials	*cred;
+
+  cred = [GSTLSCredentials selfSigned: YES];
+  PASS(cred != nil, "generates self signed certificate");
+  PASS([GSTLSCredentials selfSigned: NO] == cred,
+    "self signed certificate is reused");
+
+  cred = [GSTLSCredentials credentialsFromCAFile: nil
+                                   defaultCAFile: nil
+                                      revokeFile: nil
+                               defaultRevokeFile: nil
+                                 certificateFile: @"test.crt"
+                              certificateKeyFile: @"test.key"
+                          certificateKeyPassword: @"asdf"
+                                        asClient: NO
+                                           debug: YES];
+  PASS(cred != nil, "OpenSSL encrypted key can be loaded");
 #else
   SKIP("TLS support disabled");
 #endif

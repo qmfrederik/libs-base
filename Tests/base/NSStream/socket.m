@@ -6,7 +6,11 @@
 #import <Foundation/NSStream.h>
 
 #if	defined(GS_USE_GNUTLS)
-#define	SSL_SUPPORTED	GS_USE_GNUTLS
+#if	GS_USE_GNUTLS || GS_USE_SCHANNEL
+#define	SSL_SUPPORTED	1
+#else
+#define	SSL_SUPPORTED	0
+#endif
 #else
 #define	SSL_SUPPORTED	1 /* Assume Apple supports it */
 #endif
