@@ -66,6 +66,9 @@ ifeq ($(BASE_MAKE_LOADED),)
   # Has GNUTLS been found (for TLS/SSL support throughout)?
   GNUSTEP_BASE_HAVE_GNUTLS=@HAVE_GNUTLS@
 
+  # Is native Windows SChannel used (for TLS/SSL support throughout)?
+  GNUSTEP_BASE_HAVE_SCHANNEL=@HAVE_SCHANNEL@
+
   # Has libxml2 been found (for NSXMLNode and related classes)?
   GNUSTEP_BASE_HAVE_LIBXML=@HAVE_LIBXML@
 

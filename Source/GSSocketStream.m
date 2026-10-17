@@ -41,6 +41,9 @@
 #import "GSSocketStream.h"
 
 #import "GNUstepBase/GSTLS.h"
+#if	defined(HAVE_SCHANNEL)
+#import "GSTLSSChannel.h"
+#endif
 
 #ifndef SHUT_RD
 # ifdef  SD_RECEIVE
@@ -566,7 +569,7 @@ GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
 
 @end
 
-#if     defined(HAVE_GNUTLS)
+#if     defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
 
 @interface      GSTLSHandler : GSStreamHandler
 {
@@ -594,7 +597,7 @@ GSPrivateSockaddrSetup(NSString *machine, uint16_t port,
  * If the operation fails, this sets the error number.
  */
 static ssize_t
-GSTLSPull(gnutls_transport_ptr_t handle, void *buffer, size_t len)
+GSTLSPull(void *handle, void *buffer, size_t len)
 {
   ssize_t       result;
   GSTLSHandler  *tls = (GSTLSHandler*)handle;
@@ -625,7 +628,7 @@ GSTLSPull(gnutls_transport_ptr_t handle, void *buffer, size_t len)
  * If the operation fails, this sets the error number.
  */
 static ssize_t
-GSTLSPush(gnutls_transport_ptr_t handle, const void *buffer, size_t len)
+GSTLSPush(void *handle, const void *buffer, size_t len)
 {
   ssize_t       result;
   GSTLSHandler  *tls = (GSTLSHandler*)handle;
@@ -1011,9 +1014,9 @@ static NSArray  *keys = nil;
 
 @end
 
-#else   /* HAVE_GNUTLS */
+#else   /* HAVE_GNUTLS || HAVE_SCHANNEL */
 
-/* GNUTLS not available ...
+/* TLS not available ...
  */
 @interface      GSTLSHandler : GSStreamHandler
 @end
@@ -1086,7 +1089,7 @@ static NSArray  *keys = nil;
     && [tls isEqualToString: NSStreamSocketSecurityLevelNone] == NO)
     {
       NSLog(@"Attempt to use SSL/TLS without support.");
-      NSLog(@"Please reconfigure gnustep-base with GNU TLS.");
+      NSLog(@"Please reconfigure gnustep-base with TLS support.");
     }
   return;
 }
@@ -1098,7 +1101,7 @@ static NSArray  *keys = nil;
 }
 @end
 
-#endif   /* HAVE_GNUTLS */
+#endif   /* HAVE_GNUTLS || HAVE_SCHANNEL */
 
 
 
@@ -2208,7 +2211,13 @@ setNonBlocking(SOCKET fd)
   if (_handler == nil)
     result = [self _read: buffer maxLength: len];
   else
-    result = [_handler read: buffer maxLength: len];
+    {
+      /* The handler may satisfy the read from its own buffers without
+       * calling -_read:maxLength:, so the event must be re-armed here.
+       */
+      _events &= ~NSStreamEventHasBytesAvailable;
+      result = [_handler read: buffer maxLength: len];
+    }
   NSDebugMLLog(@"NSStream", @"%@ tried %lld result %lld",
     self, (long long)len, (long long) result);
   return result;

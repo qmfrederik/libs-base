@@ -602,6 +602,9 @@
 /* Define if your system has variable length network addresses */
 #undef HAVE_SA_LEN
 
+/* Define if the Windows SChannel TLS implementation is used */
+#undef HAVE_SCHANNEL
+
 /* Define to 1 if you have the 'setpgid' function. */
 #undef HAVE_SETPGID
 

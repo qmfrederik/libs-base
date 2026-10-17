@@ -25,6 +25,9 @@
 #define	EXPOSE_NSPort_IVARS	1
 #define	EXPOSE_NSSocketPort_IVARS	1
 #import "GNUstepBase/GSTLS.h"
+#if	defined(HAVE_SCHANNEL)
+#import "GSTLSSChannel.h"
+#endif
 #import "Foundation/NSArray.h"
 #import "Foundation/NSNotification.h"
 #import "Foundation/NSNotificationQueue.h"
@@ -259,7 +262,7 @@ typedef enum {
   NSSocketPort		*sendPort;
   struct sockaddr	sockAddr;	/* Far end of connection.	*/
   NSString		*defaultAddress;
-#if	defined(HAVE_GNUTLS)
+#if	defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
   GSTLSSession		*session;	/* Session for encryption.	*/
 #endif
 }
@@ -286,13 +289,13 @@ typedef enum {
 @end
 
 
-#if     defined(HAVE_GNUTLS)
+#if     defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
 
 /* Callback to allow the TLS code to pull data from the remote system.
  * If the operation fails, this sets the error number.
  */
 static ssize_t
-GSTLSHandlePull(gnutls_transport_ptr_t handle, void *buffer, size_t len)
+GSTLSHandlePull(void *handle, void *buffer, size_t len)
 {
   ssize_t       result = 0;
   GSTcpHandle   *tls = (GSTcpHandle*)handle;
@@ -317,7 +320,7 @@ GSTLSHandlePull(gnutls_transport_ptr_t handle, void *buffer, size_t len)
  * If the operation fails, this sets the error number.
  */
 static ssize_t
-GSTLSHandlePush(gnutls_transport_ptr_t handle, const void *buffer, size_t len)
+GSTLSHandlePush(void *handle, const void *buffer, size_t len)
 {
   ssize_t       result = 0;
   GSTcpHandle   *tls = (GSTcpHandle*)handle;
@@ -833,7 +836,7 @@ static Class	runLoopClass;
 	}
       M_UNLOCK(myLock);
     }
-#if	defined(HAVE_GNUTLS)
+#if	defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
   if (session)
     {
       [session disconnect: NO];
@@ -857,7 +860,7 @@ static Class	runLoopClass;
 
 - (void) receivedEventRead
 {
-#if     defined(HAVE_GNUTLS)
+#if     defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
   do {
 #endif
   unsigned	want;
@@ -898,7 +901,7 @@ static Class	runLoopClass;
    * Now try to fill the buffer with data.
    */
   bytes = [rData mutableBytes];
-#if	defined(HAVE_GNUTLS)
+#if	defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
   if (session)
     {
       if ([session handshake])
@@ -1207,7 +1210,7 @@ static Class	runLoopClass;
           bytes = [rData mutableBytes];
         }
     }
-#if     defined(HAVE_GNUTLS)
+#if     defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
   /* As long as there are bytes available in the TLS buffers we must act as
    * if the network connection is readable, otherwise we could have a hang
    * waiting for the run loop to signal more data when the TLS layer has
@@ -1251,7 +1254,7 @@ static Class	runLoopClass;
 	      cData = newDataWithEncodedPort(p);
 	      cLength = 0;
 
-#if	defined(HAVE_GNUTLS)
+#if	defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
               {
                 NSDictionary	*opts = [p clientOptionsForTLS];
                 DESTROY(session);
@@ -1276,7 +1279,7 @@ static Class	runLoopClass;
 	  const void	*b = [cData bytes];
           int           len;
 
-#if	defined(HAVE_GNUTLS)
+#if	defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
 	  if (session)
 	    {
 	      if ([session handshake])
@@ -1361,7 +1364,7 @@ static Class	runLoopClass;
 	}
       b = [wData bytes];
       l = [wData length];
-#if	defined(HAVE_GNUTLS)
+#if	defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
       if (session)
 	{
 	  if ([session handshake])
@@ -2412,7 +2415,7 @@ static Class		tcpPortClass;
 	  memcpy(&handle->sockAddr, &sockAddr, sizeof(sockAddr));
 	  ASSIGN(handle->defaultAddress, GSPrivateSockaddrHost(&sockAddr));
 	  [handle setState: GS_H_ACCEPT];
-#if	defined(HAVE_GNUTLS)
+#if	defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
 	  {
 	    NSDictionary	*o;
 	    if ((o = [self serverOptionsForTLS]) != nil)

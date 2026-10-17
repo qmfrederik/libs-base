@@ -38,6 +38,10 @@ win32_OBJC_FILES =\
 	NSUserDefaults.m \
 	NSString+Win32Additions.m\
 
+ifeq ($(HAVE_SCHANNEL),1)
+  win32_OBJC_FILES += GSTLSSChannel.m
+endif
+
 -include Makefile.preamble
 
 include $(GNUSTEP_MAKEFILES)/subproject.make

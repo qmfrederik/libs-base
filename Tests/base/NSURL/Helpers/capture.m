@@ -73,8 +73,12 @@
   if (isSecure)
     {
       [serverStream setProperty: NSStreamSocketSecurityLevelTLSv1 forKey: NSStreamSocketSecurityLevelKey];
+#if	GS_USE_SCHANNEL
+      [serverStream setProperty: @"testCert.pfx" forKey: GSTLSCertificateFile];
+#else
       [serverStream setProperty: @"testCert.pem" forKey: GSTLSCertificateFile];
       [serverStream setProperty: @"testKey.pem" forKey: GSTLSCertificateKeyFile];
+#endif
     }
 
   [serverStream setDelegate: self];

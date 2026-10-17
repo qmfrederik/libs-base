@@ -651,6 +651,7 @@ ICU_I18N_LIBS
 ICU_I18N_CFLAGS
 HAVE_AVAHI
 HAVE_MDNS
+HAVE_SCHANNEL
 HAVE_GNUTLS
 TLS_LIBS
 TLS_CFLAGS
@@ -835,6 +836,7 @@ with_xml_prefix
 enable_xmltest
 enable_xslt
 enable_tls
+with_tls_library
 with_tls_prefix
 enable_tlstest
 enable_zeroconf
@@ -1536,7 +1538,7 @@ Optional Features:
   --disable-xm            Build even if XML-dependencies are not met
   --disable-xmltest       Do not try to compile and run a test XML program
   --disable-xslt          Build even if XSLT-dependency is not met
-  --disable-tls           Disable use of GNUTLS
+  --disable-tls           Disable use of TLS
   --disable-tlstest       Do not try to compile and run a test TLS program
   --disable-zeroconf      Disable NSNetServices support
   --disable-icu           Disable International Components for Unicode
@@ -1608,6 +1610,9 @@ Optional Packages:
   --with-libiconv-library=PATH
                           Library path for libiconv libraries
   --with-xml-prefix=PFX   Prefix where libxml is installed (optional)
+  --with-tls-library=LIB  Select the TLS implementation: gnutls (the default)
+                          or schannel (the native TLS implementation on
+                          Windows)
   --with-tls-prefix=PFX   Prefix where libgnutls is installed (optional)
   --with-zeroconf-api=API force use of a specific zeroconf API (mdns or avahi)
   --with-dispatch-include=PATH
@@ -14837,6 +14842,46 @@ esac
 fi
 
 
+# Check whether --with-tls-library was given.
+if test ${with_tls_library+y}
+then :
+  withval=$with_tls_library; tls_library="$withval"
+else case e in #(
+  e) tls_library=gnutls ;;
+esac
+fi
+
+
+HAVE_GNUTLS=0
+HAVE_SCHANNEL=0
+if test $enable_tls = yes; then
+  case "$tls_library" in
+    gnutls) ;;
+    schannel)
+      case "$target_os" in
+        mingw*|windows) ;;
+        *) as_fn_error $? "SChannel TLS support is only available on Windows" "$LINENO" 5;;
+      esac
+      ac_fn_c_check_header_compile "$LINENO" "schannel.h" "ac_cv_header_schannel_h" "#include <windows.h>
+#define SECURITY_WIN32
+#include <security.h>
+
+"
+if test "x$ac_cv_header_schannel_h" = xyes
+then :
+  HAVE_SCHANNEL=1
+else case e in #(
+  e) as_fn_error $? "Missing schannel.h for SChannel TLS support" "$LINENO" 5 ;;
+esac
+fi
+
+      LIBS="-lsecur32 -lcrypt32 -lncrypt $LIBS"
+      enable_tls=schannel
+      ;;
+    *) as_fn_error $? "Unknown TLS library '$tls_library' (use gnutls or schannel)" "$LINENO" 5;;
+  esac
+fi
+
 if test $enable_tls = yes; then
   HAVE_GNUTLS=0
   # Save CFLAGS and LIBS as AM_PATH_TLS clobbers these variables regardless
@@ -15196,7 +15241,7 @@ then :
 fi
 
   fi
-else
+elif test $HAVE_SCHANNEL = 0; then
   { printf '%s\n' "$as_me:${as_lineno-$LINENO}: WARNING: Disabled support for TLS funtionality." >&5
 printf '%s\n' "$as_me: WARNING: Disabled support for TLS funtionality." >&2;}
   HAVE_GNUTLS=0
@@ -15204,6 +15249,12 @@ fi
 if test $HAVE_GNUTLS = 1; then
 
 printf '%s\n' "#define HAVE_GNUTLS $HAVE_GNUTLS" >>confdefs.h
+
+fi
+
+if test $HAVE_SCHANNEL = 1; then
+
+printf '%s\n' "#define HAVE_SCHANNEL 1" >>confdefs.h
 
 fi
 

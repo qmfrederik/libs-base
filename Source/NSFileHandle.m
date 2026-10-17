@@ -34,6 +34,9 @@
 #import "Foundation/NSPathUtilities.h"
 #import "Foundation/NSURL.h"
 #import "GNUstepBase/GSTLS.h"
+#if	defined(HAVE_SCHANNEL)
+#import "GSTLSSChannel.h"
+#endif
 #import "GNUstepBase/NSString+GNUstepBase.h"
 #import "GSPrivate.h"
 #import "GSNetwork.h"
@@ -46,7 +49,7 @@ static Class NSFileHandle_abstract_class = nil;
 static Class NSFileHandle_concrete_class = nil;
 static Class NSFileHandle_ssl_class = nil;
 
-#if     defined(HAVE_GNUTLS)
+#if     defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
 @interface      GSTLSHandle : GSFileHandle
 {
 @public
@@ -82,7 +85,7 @@ static Class NSFileHandle_ssl_class = nil;
     {
       NSFileHandle_abstract_class = self;
       NSFileHandle_concrete_class = [GSFileHandle class];
-#if     defined(HAVE_GNUTLS) 
+#if     defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
       NSFileHandle_ssl_class = [GSTLSHandle class];
 #endif
     }
@@ -768,11 +771,11 @@ static Class NSFileHandle_ssl_class = nil;
 
 + (void) setData: (NSData*)data forTLSFile: (NSString*)fileName
 {
-#if     defined(HAVE_GNUTLS)
+#if     defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
   [GSTLSObject setData: data forTLSFile: fileName];
 #else
   [NSException raise: NSInternalInconsistencyException
-              format: @"[NSFileHandle+setData:forTLSFile:] called for a copy of gnustep-base which had GNUTLS support explicitly disabled at configure time"];
+              format: @"[NSFileHandle+setData:forTLSFile:] called for a copy of gnustep-base which had TLS support explicitly disabled at configure time"];
 #endif
 }
 
@@ -939,13 +942,13 @@ static Class NSFileHandle_ssl_class = nil;
 
 @end
 
-#if     defined(HAVE_GNUTLS)
+#if     defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL)
 
 /* Callback to allow the TLS code to pull data from the remote system.
  * If the operation fails, this sets the error number.
  */
 static ssize_t
-GSTLSHandlePull(gnutls_transport_ptr_t handle, void *buffer, size_t len)
+GSTLSHandlePull(void *handle, void *buffer, size_t len)
 {
   ssize_t       result = 0;
   GSTLSHandle   *tls = (GSTLSHandle*)handle;
@@ -986,7 +989,7 @@ GSTLSHandlePull(gnutls_transport_ptr_t handle, void *buffer, size_t len)
  * If the operation fails, this sets the error number.
  */
 static ssize_t
-GSTLSHandlePush(gnutls_transport_ptr_t handle, const void *buffer, size_t len)
+GSTLSHandlePush(void *handle, const void *buffer, size_t len)
 {
   ssize_t       result = 0;
   GSTLSHandle   *tls = (GSTLSHandle*)handle;
@@ -1214,5 +1217,5 @@ GSTLSHandlePush(gnutls_transport_ptr_t handle, const void *buffer, size_t len)
 
 @end
 
-#endif  /* defined(HAVE_GNUTLS) */
+#endif  /* defined(HAVE_GNUTLS) || defined(HAVE_SCHANNEL) */
 
